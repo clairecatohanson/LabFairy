@@ -6,7 +6,7 @@ import { Textarea } from "../form-elements/Textarea"
 import { getLabs } from "../../data/labs"
 import { getBuildings, getRooms, getLocations } from "../../data/locations"
 
-export const EquipmentForm = ({ formEl, submitFunction, title, router }) => {
+export const EquipmentForm = ({ formEl, submitFunction, title }) => {
   const [labs, setLabs] = useState([])
   const [buildings, setBuildings] = useState([])
   const [rooms, setRooms] = useState([])
@@ -36,58 +36,52 @@ export const EquipmentForm = ({ formEl, submitFunction, title, router }) => {
   }, [])
 
   return (
-    <></>
-    // <FormLayout title={title}>
-    //   <form ref={formEl}>
-    //     <Input
-    //       id="equipment-name"
-    //       label="Equipment Name"
-    //       placeholder="e.g. Ultracentrifuge"
-    //       type="text"
-    //     />
-    //     <div>
-    //       <h4>Location</h4>
-    //       {/* <Select
-    //         id="building"
-    //         defaultOption="Select building"
-    //         dropdownOptions={buildings}
-    //         label="Building"
-    //       />
-    //       <Select
-    //         id="room"
-    //         defaultOption="Select room"
-    //         dropdownOptions={rooms}
-    //         label="Room"
-    //       />
-    //       <Select
-    //         id="location"
-    //         defaultOption="Select location"
-    //         dropdownOptions={locations}
-    //         label="Location"
-    //       /> */}
-    //     </div>
-    //     <Textarea
-    //       id="description"
-    //       label="Description"
-    //       placeholder="e.g. High-speed centrifuge for pelleting cell membrane"
-    //     />
-    //     <Input
-    //       id="equipment-labs"
-    //       checkboxes={labs}
-    //       name="labs"
-    //       type="checkbox"
-    //     />
-    //   </form>
-    //   <div>
-    //     <button onClick={submitFunction}>Create</button>
-    //     <button
-    //       onClick={() => {
-    //         router.back()
-    //       }}
-    //     >
-    //       Cancel
-    //     </button>
-    //   </div>
-    // </FormLayout>
+    <FormLayout title={title}>
+      <form ref={formEl}>
+        <Input
+          id="name"
+          label="Equipment Name"
+          placeholder="e.g. Ultracentrifuge"
+          type="text"
+        />
+        <div>
+          <h4>Location</h4>
+          <Select
+            id="building"
+            defaultOption="Select building"
+            dropdownOptions={buildings}
+            label="Building"
+          />
+          <Select
+            id="room"
+            defaultOption="Select room"
+            dropdownOptions={rooms}
+            label="Room"
+          />
+          <Select
+            id="location"
+            defaultOption="Select location"
+            dropdownOptions={locations}
+            label="Location"
+          />
+        </div>
+        <Textarea
+          id="description"
+          label="Description"
+          placeholder="e.g. High-speed centrifuge for pelleting cell membrane"
+        />
+        <Input
+          id="labs"
+          checkboxes={labs}
+          label="Labs"
+          name="labs"
+          type="checkbox"
+        />
+      </form>
+      <div>
+        <button onClick={submitFunction}>Create</button>
+        <button>Cancel</button>
+      </div>
+    </FormLayout>
   )
 }

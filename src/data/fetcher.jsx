@@ -33,6 +33,17 @@ export const getOptions = () => {
   }
 }
 
+export const postOptions = (dataObject) => {
+  return {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: "Token 91dddf9bcff7eb81f18d40622baa0dede6c22278",
+    },
+    body: JSON.stringify(dataObject),
+  }
+}
+
 export const fetchWithResponse = async (endpoint, fetchOptions) => {
   try {
     const response = await fetch(`${apiURL}/${endpoint}`, fetchOptions)
