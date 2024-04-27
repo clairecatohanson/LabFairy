@@ -31,7 +31,7 @@ export const NewEquipmentForm = () => {
       return createLabEquipment(labEquipment)
     })
     try {
-      const results = await Promise.all(labEquipmentPromises)
+      await Promise.all(labEquipmentPromises)
       navigate("/")
     } catch (error) {
       throw Error(error.status)

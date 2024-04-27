@@ -9,7 +9,9 @@ import { getBuildings, getRooms, getLocations } from "../../data/locations"
 export const EquipmentForm = ({ formEl, submitFunction, title }) => {
   const [labs, setLabs] = useState([])
   const [buildings, setBuildings] = useState([])
+  const [building, setBuilding] = useState(0)
   const [rooms, setRooms] = useState([])
+  const [room, setRoom] = useState(0)
   const [locations, setLocations] = useState([])
 
   useEffect(() => {
@@ -35,6 +37,35 @@ export const EquipmentForm = ({ formEl, submitFunction, title }) => {
     })
   }, [])
 
+  useEffect(() => {
+    if (building) {
+      const buildingQuery = `building=${building}`
+      getRooms(buildingQuery).then((roomData) => {
+        if (roomData) {
+          setRooms(roomData)
+        }
+      })
+    }
+  }, [building])
+
+  useEffect(() => {
+    if (room) {
+      const roomQuery = `room=${room}`
+      getLocations(roomQuery).then((locationData) => {
+        if (locationData) {
+          setLocations(locationData)
+        }
+      })
+    }
+    if (room === 0) {
+      getLocations().then((locationData) => {
+        if (locationData) {
+          setLocations(locationData)
+        }
+      })
+    }
+  }, [room])
+
   return (
     <FormLayout title={title}>
       <form ref={formEl}>
@@ -46,18 +77,32 @@ export const EquipmentForm = ({ formEl, submitFunction, title }) => {
         />
         <div>
           <h4>Location</h4>
-          <Select
+          <select
             id="building"
-            defaultOption="Select building"
-            dropdownOptions={buildings}
-            label="Building"
-          />
-          <Select
+            onChange={(e) => {
+              setBuilding(parseInt(e.target.value))
+            }}
+          >
+            <option value="0">Select building</option>
+            {buildings.map((building) => (
+              <option key={building.id} value={building.id}>
+                {building.name}
+              </option>
+            ))}
+          </select>
+          <select
             id="room"
-            defaultOption="Select room"
-            dropdownOptions={rooms}
-            label="Room"
-          />
+            onChange={(e) => {
+              setRoom(parseInt(e.target.value))
+            }}
+          >
+            <option value="0">Select room</option>
+            {rooms.map((room) => (
+              <option key={room.id} value={room.id}>
+                {room.name}
+              </option>
+            ))}
+          </select>
           <Select
             id="location"
             defaultOption="Select location"
