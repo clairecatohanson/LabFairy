@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom"
 import { EquipmentForm } from "../../components/forms/EquipmentForm"
 import { createEquipment, createLabEquipment } from "../../data/equipment"
 
-export const NewEquipmentForm = () => {
+export const NewEquipment = () => {
   const formEl = useRef()
   const navigate = useNavigate()
 
