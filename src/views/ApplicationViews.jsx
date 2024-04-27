@@ -1,6 +1,6 @@
 import { Outlet, Route, Routes } from "react-router-dom"
 import { NavBar } from "../components/nav/NavBar"
-import { NewEquipmentForm } from "../pages/equipment/NewEquipmentForm"
+import { NewEquipment } from "../pages/equipment/NewEquipment"
 
 export const ApplicationViews = () => {
   return (
@@ -14,7 +14,7 @@ export const ApplicationViews = () => {
           </>
         }
       >
-        <Route path="new-equipment" element={<NewEquipmentForm />} />
+        <Route path="new-equipment" element={<NewEquipment />} />
       </Route>
     </Routes>
   )
