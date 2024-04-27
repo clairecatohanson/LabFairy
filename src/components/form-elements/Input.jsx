@@ -4,6 +4,7 @@ export const Input = ({
   label = undefined,
   name = undefined,
   placeholder = "",
+  refEl = undefined,
   type,
 }) => {
   return (
@@ -14,12 +15,18 @@ export const Input = ({
           {checkboxes.map((checkbox) => (
             <div key={checkbox.id}>
               <label htmlFor={checkbox.id}>{checkbox.name}</label>
-              <input id={checkbox.id} type="checkbox" name={name} />
+              <input id={checkbox.id} name={name} ref={refEl} type="checkbox" />
             </div>
           ))}
         </>
       ) : (
-        <input id={id} type={type} name={name} placeholder={placeholder} />
+        <input
+          id={id}
+          type={type}
+          name={name}
+          placeholder={placeholder}
+          ref={refEl}
+        />
       )}
     </fieldset>
   )
