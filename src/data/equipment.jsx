@@ -1,5 +1,4 @@
 import {
-  deleteOptions,
   fetchWithResponse,
   fetchWithoutResponse,
   getOptions,
@@ -11,18 +10,13 @@ export const createEquipment = async (equipment) => {
   return await fetchWithResponse("equipment", postOptions(equipment))
 }
 
-export const createLabEquipment = async (labEquipment) => {
-  return await fetchWithResponse("labequipment", postOptions(labEquipment))
-}
-
-export const deleteLabEquipment = async (labEquipment) => {
-  return await fetchWithoutResponse("labequipment", deleteOptions(labEquipment))
-}
-
-export const getEquipment = async (equipment_id = undefined) => {
+export const getEquipment = async ({ equipment_id, query } = {}) => {
   let resource = "equipment"
   if (equipment_id) {
     resource += `/${equipment_id}`
+  }
+  if (query) {
+    resource += `?${query}`
   }
   return await fetchWithResponse(resource, getOptions())
 }
