@@ -32,7 +32,6 @@ export const NewEquipment = () => {
     })
     try {
       await Promise.all(labEquipmentPromises)
-      navigate("/")
     } catch (error) {
       throw Error(error.status)
     }
@@ -42,6 +41,7 @@ export const NewEquipment = () => {
     const newEquipment = await addNewEquipment()
     const newEquipmentId = newEquipment.id
     await provideLabAccess(newEquipmentId)
+    navigate("/all-equipment")
   }
 
   return (
