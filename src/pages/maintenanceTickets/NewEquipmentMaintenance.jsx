@@ -2,7 +2,7 @@ import { useContext, useRef } from "react"
 import { useNavigate } from "react-router-dom"
 import { EquipmentMaintenanceForm } from "../../components/forms/EquipmentMaintenanceForm"
 import { AppContext } from "../../context/AppWrapper"
-import { createTicket } from "../../data/equipmentMaintenance"
+import { createTicket } from "../../data/equipmentmaintenance"
 
 export const NewEquipmentMaintenance = () => {
   const { user } = useContext(AppContext)
@@ -10,12 +10,11 @@ export const NewEquipmentMaintenance = () => {
   const formEl = useRef()
 
   const saveTicket = async () => {
-    const { equipment, maintenanceType, dateNeeded, notes } = formEl.current
+    const { equipment, maintenanceType, dateNeeded } = formEl.current
     const newTicket = {
       equipment_id: equipment.value,
       maintenance_id: maintenanceType.value,
       date_needed: dateNeeded.value,
-      notes: notes.value,
     }
 
     if (user.admin) {
