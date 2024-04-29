@@ -1,11 +1,7 @@
 import { useEffect, useRef, useState } from "react"
 import { useNavigate, useParams } from "react-router-dom"
-import {
-  createLabEquipment,
-  deleteLabEquipment,
-  getEquipment,
-  updateEquipment,
-} from "../../data/equipment"
+import { getEquipment, updateEquipment } from "../../data/equipment"
+import { createLabEquipment, deleteLabEquipment } from "../../data/labequipment"
 import { EquipmentForm } from "../../components/forms/EquipmentForm"
 
 export const EditEquipment = () => {
@@ -17,7 +13,7 @@ export const EditEquipment = () => {
 
   useEffect(() => {
     if (id) {
-      getEquipment(parseInt(id)).then((equipmentData) => {
+      getEquipment({ equipment_id: parseInt(id) }).then((equipmentData) => {
         if (equipmentData) {
           setEquipment(equipmentData)
         }

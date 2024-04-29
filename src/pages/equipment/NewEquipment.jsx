@@ -1,7 +1,8 @@
 import { useRef } from "react"
 import { useNavigate } from "react-router-dom"
 import { EquipmentForm } from "../../components/forms/EquipmentForm"
-import { createEquipment, createLabEquipment } from "../../data/equipment"
+import { createEquipment } from "../../data/equipment"
+import { createLabEquipment } from "../../data/labequipment"
 
 export const NewEquipment = () => {
   const formEl = useRef()
