@@ -64,7 +64,7 @@ export const EquipmentForm = ({ formEl, submitFunction, title }) => {
         }
       })
     }
-  }, [room])
+  }, [room, title])
 
   return (
     <FormLayout title={title}>
@@ -75,41 +75,47 @@ export const EquipmentForm = ({ formEl, submitFunction, title }) => {
           placeholder="e.g. Ultracentrifuge"
           type="text"
         />
-        <div>
-          <h4>Location</h4>
-          <select
-            id="building"
-            onChange={(e) => {
-              setBuilding(parseInt(e.target.value))
-            }}
-          >
-            <option value="0">Select building</option>
-            {buildings.map((building) => (
-              <option key={building.id} value={building.id}>
-                {building.name}
-              </option>
-            ))}
-          </select>
-          <select
-            id="room"
-            onChange={(e) => {
-              setRoom(parseInt(e.target.value))
-            }}
-          >
-            <option value="0">Select room</option>
-            {rooms.map((room) => (
-              <option key={room.id} value={room.id}>
-                {room.name}
-              </option>
-            ))}
-          </select>
-          <Select
-            id="location"
-            defaultOption="Select location"
-            dropdownOptions={locations}
-            label="Location"
-          />
-        </div>
+        <fieldset>
+          {title === "Add New Equipment" ? (
+            <>
+              <h4>Location</h4>
+              <select
+                id="building"
+                onChange={(e) => {
+                  setBuilding(parseInt(e.target.value))
+                }}
+              >
+                <option value="0">Select building</option>
+                {buildings.map((building) => (
+                  <option key={building.id} value={building.id}>
+                    {building.name}
+                  </option>
+                ))}
+              </select>
+              <select
+                id="room"
+                onChange={(e) => {
+                  setRoom(parseInt(e.target.value))
+                }}
+              >
+                <option value="0">Select room</option>
+                {rooms.map((room) => (
+                  <option key={room.id} value={room.id}>
+                    {room.name}
+                  </option>
+                ))}
+              </select>
+              <Select
+                id="location"
+                defaultOption="Select location"
+                dropdownOptions={locations}
+                label="Location"
+              />
+            </>
+          ) : (
+            <></>
+          )}
+        </fieldset>
         <Textarea
           id="description"
           label="Description"

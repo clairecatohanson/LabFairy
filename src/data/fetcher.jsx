@@ -1,5 +1,4 @@
 const apiURL = "http://localhost:8000"
-const userToken = JSON.parse(localStorage.getItem("fairy_auth")).token
 
 const checkError = (res) => {
   if (!res.ok) {
@@ -25,7 +24,29 @@ const catchError = (err) => {
   }
 }
 
+export const deleteOptions = (dataObject = undefined) => {
+  const userToken = JSON.parse(localStorage.getItem("fairy_auth")).token
+  if (!dataObject) {
+    return {
+      method: "DELETE",
+      headers: {
+        Authorization: `Token ${userToken}`,
+      },
+    }
+  } else {
+    return {
+      method: "DELETE",
+      headers: {
+        Authorization: `Token ${userToken}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(dataObject),
+    }
+  }
+}
+
 export const getOptions = () => {
+  const userToken = JSON.parse(localStorage.getItem("fairy_auth")).token
   return {
     method: "GET",
     headers: {
@@ -35,8 +56,21 @@ export const getOptions = () => {
 }
 
 export const postOptions = (dataObject) => {
+  const userToken = JSON.parse(localStorage.getItem("fairy_auth")).token
   return {
     method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Token ${userToken}`,
+    },
+    body: JSON.stringify(dataObject),
+  }
+}
+
+export const putOptions = (dataObject) => {
+  const userToken = JSON.parse(localStorage.getItem("fairy_auth")).token
+  return {
+    method: "PUT",
     headers: {
       "Content-Type": "application/json",
       Authorization: `Token ${userToken}`,
@@ -50,6 +84,15 @@ export const fetchWithResponse = async (endpoint, fetchOptions) => {
     const response = await fetch(`${apiURL}/${endpoint}`, fetchOptions)
     const data = await checkErrorJson(response)
     return data
+  } catch (error) {
+    catchError(error)
+  }
+}
+
+export const fetchWithoutResponse = async (endpoint, fetchOptions) => {
+  try {
+    const response = await fetch(`${apiURL}/${endpoint}`, fetchOptions)
+    return checkError(response)
   } catch (error) {
     catchError(error)
   }
