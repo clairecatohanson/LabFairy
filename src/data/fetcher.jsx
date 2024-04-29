@@ -1,4 +1,5 @@
 const apiURL = "http://localhost:8000"
+const userToken = JSON.parse(localStorage.getItem("fairy_auth")).token
 
 const checkError = (res) => {
   if (!res.ok) {
@@ -28,7 +29,7 @@ export const getOptions = () => {
   return {
     method: "GET",
     headers: {
-      Authorization: "Token 91dddf9bcff7eb81f18d40622baa0dede6c22278",
+      Authorization: `Token ${userToken}`,
     },
   }
 }
@@ -38,7 +39,7 @@ export const postOptions = (dataObject) => {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
-      Authorization: "Token 91dddf9bcff7eb81f18d40622baa0dede6c22278",
+      Authorization: `Token ${userToken}`,
     },
     body: JSON.stringify(dataObject),
   }
