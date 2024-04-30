@@ -11,6 +11,8 @@ export const EquipmentMaintenanceForm = ({
   formEl,
   staticJSX = undefined,
   submitFunction,
+  deleteFunction = undefined,
+  updateFunction = undefined,
   title,
 }) => {
   const { user } = useContext(AppContext)
@@ -66,12 +68,20 @@ export const EquipmentMaintenanceForm = ({
         ) : (
           <button onClick={submitFunction}>Update</button>
         )}
+        {title === "Edit Equipment Maintenance" && (
+          <>
+            <button onClick={updateFunction}>
+              Cancel Scheduled Maintenance
+            </button>
+            <button onClick={deleteFunction}>Delete Ticket</button>
+          </>
+        )}
         <button
           onClick={() => {
             navigate("/maintenance")
           }}
         >
-          Cancel
+          Go Back
         </button>
       </div>
     </FormLayout>

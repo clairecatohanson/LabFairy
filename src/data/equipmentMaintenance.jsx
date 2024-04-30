@@ -1,4 +1,5 @@
 import {
+  deleteOptions,
   fetchWithResponse,
   fetchWithoutResponse,
   getOptions,
@@ -8,6 +9,10 @@ import {
 
 export const createTicket = async (ticketObject) => {
   return await fetchWithResponse("maintenance", postOptions(ticketObject))
+}
+
+export const deleteMaintenance = async (ticketId) => {
+  return await fetchWithoutResponse(`maintenance/${ticketId}`, deleteOptions())
 }
 
 export const getMaintenanceTickets = async ({ ticketId, query } = {}) => {

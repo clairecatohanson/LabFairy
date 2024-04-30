@@ -1,6 +1,6 @@
 import "./card.css"
 
-export const CardLayout = ({ children, tag, title }) => {
+export const CardLayout = ({ children, tag = undefined, title }) => {
   const [content, actions] = children
   return (
     <div className="card">
@@ -8,7 +8,7 @@ export const CardLayout = ({ children, tag, title }) => {
       <div className="content-and-actions">
         <div className="card-content">{content}</div>
         <div className="card-actions">
-          <div className="card-tag">{tag}</div>
+          {tag && <div className="card-tag">{tag}</div>}
           <div className="card-buttons">{actions}</div>
         </div>
       </div>
