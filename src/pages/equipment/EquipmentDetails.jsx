@@ -8,6 +8,7 @@ import {
 import { getMaintenanceTickets } from "../../data/equipmentmaintenance"
 import { AppContext } from "../../context/AppWrapper"
 import { DeleteEquipmentModal } from "../../components/modals/DeleteEquipmentModal"
+import "./equipmentDetails.css"
 
 export const EquipmentDetails = () => {
   const { id } = useParams()
@@ -78,104 +79,125 @@ export const EquipmentDetails = () => {
         showModal={showModal}
         setShowModal={setShowModal}
       />
-      <div>
-        <section>
-          <h3>Equipment Shared By</h3>
-          <ul>
-            {equipment.equipment_labs?.map((equipmentLab) => (
-              <li key={`lab-${equipmentLab.lab.id}`}>
-                {equipmentLab.lab.name}
-              </li>
-            ))}
-          </ul>
-        </section>
-        <section>
-          <h3>{equipment.name}</h3>
-          <div>
-            <h4>Location</h4>
-            <div>
-              {equipment.location?.room.building.short_name}{" "}
-              {equipment.location?.room.name}
+      <header>{equipment.name}</header>
+      <div className="section-container">
+        <div className="sections">
+          <section className="page-section shared-by">
+            <h3>Equipment Shared By</h3>
+            <ul>
+              {equipment.equipment_labs?.map((equipmentLab) => (
+                <li key={`lab-${equipmentLab.lab.id}`}>
+                  {equipmentLab.lab.name}
+                </li>
+              ))}
+            </ul>
+          </section>
+          <section className="page-section details">
+            <h3>Equipment Details</h3>
+            <div className="details-container">
+              <div className="location-description">
+                <div className="location">
+                  <h4>Location</h4>
+                  <div>
+                    {equipment.location?.room.building.short_name}{" "}
+                    {equipment.location?.room.name}
+                  </div>
+                  <div>{equipment.location?.name}</div>
+                </div>
+                <div className="description">
+                  <h4>Description</h4>
+                  <div>{equipment.description}</div>
+                </div>
+              </div>
+              <div>
+                <div className="tag">
+                  {archived ? <div>Archived</div> : <div>Active</div>}
+                </div>
+              </div>
             </div>
-            <div>{equipment.location?.name}</div>
-          </div>
-          {archived ? <div>Archived</div> : <div>Active</div>}
-          <div>
-            <h4>Equipment Description</h4>
-            <div>{equipment.description}</div>
-          </div>
-        </section>
-        <section>
-          <div>
-            <h3>Upcoming Maintenance</h3>
-            {upcomingMaintenance.map((ticket) => (
-              <div key={`ticket-${ticket.id}`}>
-                <h4>{ticket.maintenance.name}</h4>
-                <div>
-                  Date Needed: {ticket.date_needed} (Requested by{" "}
-                  {ticket.user.first_name} {ticket.user.last_name})
+          </section>
+          <section className="page-section maintenance">
+            <div>
+              <h3>Upcoming Maintenance</h3>
+              {upcomingMaintenance.map((ticket) => (
+                <div key={`ticket-${ticket.id}`}>
+                  <h4>{ticket.maintenance.name}</h4>
+                  <div>
+                    Date Needed: {ticket.date_needed} (Requested by{" "}
+                    {ticket.user.first_name} {ticket.user.last_name})
+                  </div>
+                  <div>Date Scheduled: {ticket.date_scheduled}</div>
+                  <div>
+                    Suggested Maintenance Interval:{" "}
+                    {ticket.maintenance.days_interval ? (
+                      <div>{ticket.maintenance.days_interval} Days</div>
+                    ) : (
+                      <div>One-time maintenance</div>
+                    )}
+                  </div>
                 </div>
-                <div>Date Scheduled: {ticket.date_scheduled}</div>
-                <div>
-                  Suggested Maintenance Interval:{" "}
-                  {ticket.maintenance.days_interval ? (
-                    <div>{ticket.maintenance.days_interval} Days</div>
-                  ) : (
-                    <div>One-time maintenance</div>
-                  )}
+              ))}
+            </div>
+            <div>
+              <h3>Last Completed Maintenance</h3>
+              {completedMaintenance.map((ticket) => (
+                <div key={`ticket-${ticket.id}`}>
+                  <h4>{ticket.maintenance.name}</h4>
+                  <div>
+                    Date Needed: {ticket.date_needed} (Requested by{" "}
+                    {ticket.user.first_name} {ticket.user.last_name})
+                  </div>
+                  <div>Date Scheduled: {ticket.date_scheduled}</div>
+                  <div>Date Completed: {ticket.date_completed}</div>
+                  <div>
+                    Suggested Maintenance Interval:{" "}
+                    {ticket.maintenance.days_interval ? (
+                      <div>{ticket.maintenance.days_interval} Days</div>
+                    ) : (
+                      <div>One-time maintenance</div>
+                    )}
+                  </div>
                 </div>
-              </div>
-            ))}
-          </div>
-          <div>
-            <h3>Last Completed Maintenance</h3>
-            {completedMaintenance.map((ticket) => (
-              <div key={`ticket-${ticket.id}`}>
-                <h4>{ticket.maintenance.name}</h4>
-                <div>
-                  Date Needed: {ticket.date_needed} (Requested by{" "}
-                  {ticket.user.first_name} {ticket.user.last_name})
-                </div>
-                <div>Date Scheduled: {ticket.date_scheduled}</div>
-                <div>Date Completed: {ticket.date_completed}</div>
-                <div>
-                  Suggested Maintenance Interval:{" "}
-                  {ticket.maintenance.days_interval ? (
-                    <div>{ticket.maintenance.days_interval} Days</div>
-                  ) : (
-                    <div>One-time maintenance</div>
-                  )}
-                </div>
-              </div>
-            ))}
-          </div>
-        </section>
+              ))}
+            </div>
+          </section>
+        </div>
       </div>
-      <div>
-        <button
-          onClick={() => {
-            navigate("/new-maintenance")
-          }}
-        >
-          {user.admin ? "Schedule" : "Request"} Maintenance
-        </button>
-        {user.admin && (
+      <div className="all-btns-container">
+        <div className="edit-btns">
           <button
+            className="btn"
             onClick={() => {
-              navigate("edit")
+              navigate("/new-maintenance")
             }}
           >
-            Edit Equipment Details
+            {user.admin ? "Schedule" : "Request"} Maintenance
           </button>
-        )}
+          {user.admin && (
+            <button
+              className="btn"
+              onClick={() => {
+                navigate("edit")
+              }}
+            >
+              Edit Equipment Details
+            </button>
+          )}
+        </div>
         {user.admin && (
-          <div>
+          <div className="remove-btns">
             {archived ? (
-              <button onClick={editArchived}>Restore</button>
+              <button className="btn" onClick={editArchived}>
+                Restore
+              </button>
             ) : (
-              <button onClick={editArchived}>Archive</button>
+              <button className="btn" onClick={editArchived}>
+                Archive
+              </button>
             )}
-            <button onClick={destroyClick}>Destroy</button>
+            <button className="btn" onClick={destroyClick}>
+              Destroy
+            </button>
           </div>
         )}
       </div>

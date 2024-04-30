@@ -1,14 +1,16 @@
+import "./form.css"
+
 export const FormLayout = ({ title, children }) => {
   const [formContent, actions] = children
 
   return (
-    <div>
+    <div className="global-container">
       <header>
         <h3>{title}</h3>
       </header>
       <section>
-        {formContent}
-        {actions}
+        <div className="form-container">{formContent}</div>
+        <div className="actions-container">{actions}</div>
       </section>
     </div>
   )

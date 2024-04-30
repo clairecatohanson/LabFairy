@@ -1,3 +1,5 @@
+import "./elements.css"
+
 export const Input = ({
   id,
   checkboxes = undefined,
@@ -8,25 +10,39 @@ export const Input = ({
   type,
 }) => {
   return (
-    <fieldset>
-      {label && <label htmlFor={id}>{label}</label>}
+    <fieldset className="form-fieldset">
+      {label && (
+        <label htmlFor={id} className="element-label">
+          {label}
+        </label>
+      )}
       {checkboxes ? (
-        <>
+        <div className="checkbox-items">
           {checkboxes.map((checkbox) => (
-            <div key={checkbox.id}>
+            <div className="checkbox-item" key={checkbox.id}>
               <label htmlFor={checkbox.id}>{checkbox.name}</label>
-              <input id={checkbox.id} name={name} ref={refEl} type="checkbox" />
+              <div className="checkbox">
+                <input
+                  id={checkbox.id}
+                  name={name}
+                  ref={refEl}
+                  type="checkbox"
+                  className="checkbox-input"
+                />
+              </div>
             </div>
           ))}
-        </>
+        </div>
       ) : (
-        <input
-          id={id}
-          type={type}
-          name={name}
-          placeholder={placeholder}
-          ref={refEl}
-        />
+        <div className="input-container">
+          <input
+            id={id}
+            type={type}
+            name={name}
+            placeholder={placeholder}
+            ref={refEl}
+          />
+        </div>
       )}
     </fieldset>
   )

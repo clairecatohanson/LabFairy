@@ -1,0 +1,23 @@
+.global-container {
+  width: 90%;
+  margin: 0 auto;
+  border: solid 1px black;
+  border-radius: 10px;
+  box-sizing: border-box;
+  padding: 20px;
+}
+
+.form-container {
+  display: flex;
+  justify-content: center;
+}
+
+.actions-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.form-section {
+  border: none;
+}

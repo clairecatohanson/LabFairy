@@ -3,6 +3,7 @@ import { getEquipment } from "../../data/equipment"
 import { EquipmentCard } from "../../components/cards/EquipmentCard"
 import { useNavigate } from "react-router-dom"
 import { AppContext } from "../../context/AppWrapper"
+import "./allEquipment.css"
 
 export const AllEquipment = () => {
   const navigate = useNavigate()
@@ -19,24 +20,32 @@ export const AllEquipment = () => {
 
   return (
     <div>
-      <h2>All Lab Equipment</h2>
-      {user.admin && (
-        <button
-          onClick={() => {
-            navigate("/new-equipment")
-          }}
-        >
-          Add New Equipment
-        </button>
-      )}
-      <div>Filter Bar (Stretch Goal)</div>
-      {allEquipment.map((equipment) => (
-        <EquipmentCard
-          key={equipment.id}
-          equipment={equipment}
-          userHasAccess={equipment.has_access}
-        ></EquipmentCard>
-      ))}
+      <header>
+        <h2>All Lab Equipment</h2>
+        <div className="page-actions">
+          <div className="filter-bar">Filter Bar (Stretch Goal)</div>
+          {user.admin && (
+            <button
+              onClick={() => {
+                navigate("/new-equipment")
+              }}
+            >
+              Add New Equipment
+            </button>
+          )}
+        </div>
+      </header>
+      <section className="equipment-cards-container">
+        <div className="equipment-cards">
+          {allEquipment.map((equipment) => (
+            <EquipmentCard
+              key={equipment.id}
+              equipment={equipment}
+              userHasAccess={equipment.has_access}
+            ></EquipmentCard>
+          ))}
+        </div>
+      </section>
     </div>
   )
 }

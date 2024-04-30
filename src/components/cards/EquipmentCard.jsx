@@ -20,11 +20,11 @@ export const EquipmentCard = ({ equipment, userHasAccess }) => {
     <CardLayout tag={tag} title={equipment.name}>
       <div>
         <div>
-          <p>
+          <div>
             {equipment.location.room.building.short_name}{" "}
             {equipment.location.room.name}
-          </p>
-          <p>{equipment.location.name}</p>
+          </div>
+          <div>{equipment.location.name}</div>
         </div>
         <div>
           <h4>Shared By:</h4>
