@@ -7,6 +7,7 @@ import {
 } from "../../data/equipment"
 import { getMaintenanceTickets } from "../../data/equipmentmaintenance"
 import { AppContext } from "../../context/AppWrapper"
+import { DeleteEquipmentModal } from "../../components/modals/DeleteEquipmentModal"
 
 export const EquipmentDetails = () => {
   const { id } = useParams()
@@ -60,14 +61,23 @@ export const EquipmentDetails = () => {
     setArchived(!archived)
   }
 
-  const destroyEquipment = async () => {
+  const destroyClick = () => {
     setShowModal(true)
+  }
+
+  const destroyEquipment = async () => {
     await deleteEquipment(parseInt(id))
     navigate("/equipment")
   }
 
   return (
     <div>
+      <DeleteEquipmentModal
+        equipment={equipment}
+        destroyEquipment={destroyEquipment}
+        showModal={showModal}
+        setShowModal={setShowModal}
+      />
       <div>
         <section>
           <h3>Equipment Shared By</h3>
@@ -165,7 +175,7 @@ export const EquipmentDetails = () => {
             ) : (
               <button onClick={editArchived}>Archive</button>
             )}
-            <button onClick={destroyEquipment}>Destroy</button>
+            <button onClick={destroyClick}>Destroy</button>
           </div>
         )}
       </div>
