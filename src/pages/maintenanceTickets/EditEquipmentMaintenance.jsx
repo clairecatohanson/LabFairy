@@ -15,7 +15,7 @@ export const EditEquipmentMaintenance = () => {
 
   useEffect(() => {
     if (id) {
-      getMaintenanceTickets(parseInt(id)).then((ticketData) => {
+      getMaintenanceTickets({ ticketId: parseInt(id) }).then((ticketData) => {
         if (ticketData) {
           setTicket(ticketData)
         }
