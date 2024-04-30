@@ -1,4 +1,5 @@
 import {
+  deleteOptions,
   fetchWithResponse,
   fetchWithoutResponse,
   getOptions,
@@ -8,6 +9,10 @@ import {
 
 export const createEquipment = async (equipment) => {
   return await fetchWithResponse("equipment", postOptions(equipment))
+}
+
+export const deleteEquipment = async (equipmentId) => {
+  return await fetchWithoutResponse(`equipment/${equipmentId}`, deleteOptions())
 }
 
 export const getEquipment = async ({ equipment_id, query } = {}) => {

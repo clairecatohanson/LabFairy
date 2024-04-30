@@ -5,6 +5,7 @@ import { EditEquipment } from "../pages/equipment/EditEquipment"
 import { NewEquipmentMaintenance } from "../pages/maintenanceTickets/NewEquipmentMaintenance"
 import { EditEquipmentMaintenance } from "../pages/maintenanceTickets/EditEquipmentMaintenance"
 import { AllEquipment } from "../pages/equipment/AllEquipment"
+import { EquipmentDetails } from "../pages/equipment/EquipmentDetails"
 
 export const ApplicationViews = () => {
   return (
@@ -26,6 +27,7 @@ export const ApplicationViews = () => {
           element={<EditEquipmentMaintenance />}
         />
         <Route path="equipment" element={<AllEquipment />} />
+        <Route path="equipment/:id" element={<EquipmentDetails />} />
       </Route>
     </Routes>
   )
