@@ -7,7 +7,12 @@ import { getLabs } from "../../data/labs"
 import { getBuildings, getRooms, getLocations } from "../../data/locations"
 import { useNavigate } from "react-router-dom"
 
-export const EquipmentForm = ({ formEl, submitFunction, title }) => {
+export const EquipmentForm = ({
+  formEl,
+  cancelFunction,
+  submitFunction,
+  title,
+}) => {
   const navigate = useNavigate()
 
   const [labs, setLabs] = useState([])
@@ -147,14 +152,15 @@ export const EquipmentForm = ({ formEl, submitFunction, title }) => {
         <button onClick={submitFunction} className="btn">
           {title === "Add New Equipment" ? "Create" : "Update"}
         </button>
-        <button
-          onClick={() => {
-            navigate("/equipment")
-          }}
-          className="btn"
-        >
-          Cancel
-        </button>
+        {title === "Add New Equipment" ? (
+          <button onClick={cancelFunction} className="btn">
+            Cancel
+          </button>
+        ) : (
+          <button onClick={cancelFunction} className="btn">
+            Cancel
+          </button>
+        )}
       </div>
     </FormLayout>
   )
