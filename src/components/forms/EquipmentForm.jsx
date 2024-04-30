@@ -5,7 +5,6 @@ import { Select } from "../form-elements/Select"
 import { Textarea } from "../form-elements/Textarea"
 import { getLabs } from "../../data/labs"
 import { getBuildings, getRooms, getLocations } from "../../data/locations"
-import { useNavigate } from "react-router-dom"
 
 export const EquipmentForm = ({
   formEl,
@@ -13,8 +12,6 @@ export const EquipmentForm = ({
   submitFunction,
   title,
 }) => {
-  const navigate = useNavigate()
-
   const [labs, setLabs] = useState([])
   const [buildings, setBuildings] = useState([])
   const [building, setBuilding] = useState(0)

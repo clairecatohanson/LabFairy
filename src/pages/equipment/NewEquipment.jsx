@@ -42,7 +42,7 @@ export const NewEquipment = () => {
     const newEquipment = await addNewEquipment()
     const newEquipmentId = newEquipment.id
     await provideLabAccess(newEquipmentId)
-    navigate("/all-equipment")
+    navigate("/equipment")
   }
 
   const cancelClick = () => {
