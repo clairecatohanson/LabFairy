@@ -78,36 +78,49 @@ export const EquipmentForm = ({ formEl, submitFunction, title }) => {
           placeholder="e.g. Ultracentrifuge"
           type="text"
         />
-        <fieldset>
-          {title === "Add New Equipment" ? (
+        <fieldset className="form-section">
+          {title === "Add New Equipment" && (
             <>
-              <h4>Location</h4>
-              <select
-                id="building"
-                onChange={(e) => {
-                  setBuilding(parseInt(e.target.value))
-                }}
-              >
-                <option value="0">Select building</option>
-                {buildings.map((building) => (
-                  <option key={building.id} value={building.id}>
-                    {building.name}
-                  </option>
-                ))}
-              </select>
-              <select
-                id="room"
-                onChange={(e) => {
-                  setRoom(parseInt(e.target.value))
-                }}
-              >
-                <option value="0">Select room</option>
-                {rooms.map((room) => (
-                  <option key={room.id} value={room.id}>
-                    {room.name}
-                  </option>
-                ))}
-              </select>
+              <div className="form-fieldset">
+                <label htmlFor="building" className="element-label">
+                  Building
+                </label>
+                <div className="select-container">
+                  <select
+                    id="building"
+                    onChange={(e) => {
+                      setBuilding(parseInt(e.target.value))
+                    }}
+                  >
+                    <option value="0">Select building</option>
+                    {buildings.map((building) => (
+                      <option key={building.id} value={building.id}>
+                        {building.name}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+              </div>
+              <div className="form-fieldset">
+                <label htmlFor="room" className="element-label">
+                  Room
+                </label>
+                <div className="select-container">
+                  <select
+                    id="room"
+                    onChange={(e) => {
+                      setRoom(parseInt(e.target.value))
+                    }}
+                  >
+                    <option value="0">Select room</option>
+                    {rooms.map((room) => (
+                      <option key={room.id} value={room.id}>
+                        {room.name}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+              </div>
               <Select
                 id="location"
                 defaultOption="Select location"
@@ -115,8 +128,6 @@ export const EquipmentForm = ({ formEl, submitFunction, title }) => {
                 label="Location"
               />
             </>
-          ) : (
-            <></>
           )}
         </fieldset>
         <Textarea
@@ -132,14 +143,15 @@ export const EquipmentForm = ({ formEl, submitFunction, title }) => {
           type="checkbox"
         />
       </form>
-      <div>
-        <button onClick={submitFunction}>
+      <div className="btns-container">
+        <button onClick={submitFunction} className="btn">
           {title === "Add New Equipment" ? "Create" : "Update"}
         </button>
         <button
           onClick={() => {
             navigate("/equipment")
           }}
+          className="btn"
         >
           Cancel
         </button>
