@@ -18,7 +18,7 @@ export const EquipmentCard = ({ equipment, userHasAccess }) => {
 
   return (
     <CardLayout tag={tag} title={equipment.name}>
-      <div>
+      <div className="equipment-content">
         <div>
           <div>
             {equipment.location.room.building.short_name}{" "}
@@ -37,7 +37,7 @@ export const EquipmentCard = ({ equipment, userHasAccess }) => {
           </ul>
         </div>
       </div>
-      <div>
+      <div className="equipment-actions">
         {userHasAccess && (
           <button
             onClick={() => {

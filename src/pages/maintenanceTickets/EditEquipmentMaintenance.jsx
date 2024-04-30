@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from "react"
 import { useNavigate, useParams } from "react-router-dom"
 import { EquipmentMaintenanceForm } from "../../components/forms/EquipmentMaintenanceForm"
 import {
+  deleteMaintenance,
   getMaintenanceTickets,
   updateTicket,
 } from "../../data/equipmentmaintenance"
@@ -56,7 +57,18 @@ export const EditEquipmentMaintenance = () => {
     }
 
     await updateTicket(parseInt(id), editedTicket)
-    navigate(`/maintenance/${id}`)
+    navigate("/maintenance")
+  }
+
+  const cancelMaintenance = async () => {
+    const editedTicket = { cancelled: true }
+    await updateTicket(parseInt(id), editedTicket)
+    navigate("/maintenance")
+  }
+
+  const deleteTicket = async () => {
+    await deleteMaintenance(parseInt(id))
+    navigate("/maintenance")
   }
 
   return (
@@ -64,6 +76,8 @@ export const EditEquipmentMaintenance = () => {
       formEl={formEl}
       staticJSX={<StaticJSX />}
       submitFunction={saveTicket}
+      deleteFunction={deleteTicket}
+      updateFunction={cancelMaintenance}
       title="Edit Equipment Maintenance"
     />
   )
