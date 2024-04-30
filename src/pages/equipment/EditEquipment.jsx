@@ -99,10 +99,15 @@ export const EditEquipment = () => {
     navigate(`/equipment/${id}`)
   }
 
+  const cancelClick = () => {
+    navigate(`/equipment/${parseInt(id)}`)
+  }
+
   return (
     <EquipmentForm
       formEl={formEl}
       submitFunction={saveEquipment}
+      cancelFunction={cancelClick}
       title="Edit Equipment"
     />
   )

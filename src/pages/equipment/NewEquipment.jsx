@@ -45,10 +45,15 @@ export const NewEquipment = () => {
     navigate("/all-equipment")
   }
 
+  const cancelClick = () => {
+    navigate("/equipment")
+  }
+
   return (
     <EquipmentForm
       formEl={formEl}
       submitFunction={saveEquipment}
+      cancelFunction={cancelClick}
       title="Add New Equipment"
     />
   )
