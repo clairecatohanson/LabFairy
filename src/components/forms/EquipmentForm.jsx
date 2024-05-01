@@ -146,15 +146,15 @@ export const EquipmentForm = ({
         />
       </form>
       <div className="btns-container">
-        <button onClick={submitFunction} className="btn">
+        <button className="btn" onClick={submitFunction}>
           {title === "Add New Equipment" ? "Create" : "Update"}
         </button>
         {title === "Add New Equipment" ? (
-          <button onClick={cancelFunction} className="btn">
+          <button className="btn" onClick={cancelFunction}>
             Cancel
           </button>
         ) : (
-          <button onClick={cancelFunction} className="btn">
+          <button className="btn" onClick={cancelFunction}>
             Cancel
           </button>
         )}

@@ -26,6 +26,7 @@ export const AllEquipment = () => {
           <div className="filter-bar">Filter Bar (Stretch Goal)</div>
           {user.admin && (
             <button
+              className="btn"
               onClick={() => {
                 navigate("/new-equipment")
               }}

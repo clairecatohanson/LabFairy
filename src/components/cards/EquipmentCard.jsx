@@ -40,6 +40,7 @@ export const EquipmentCard = ({ equipment, userHasAccess }) => {
       <div className="equipment-actions">
         {userHasAccess && (
           <button
+            className="btn"
             onClick={() => {
               navigate(`/equipment/${equipment.id}`)
             }}

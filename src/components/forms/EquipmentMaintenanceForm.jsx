@@ -62,21 +62,26 @@ export const EquipmentMaintenanceForm = ({
       </form>
       <div>
         {title === "Schedule Equipment Maintenance" ? (
-          <button onClick={submitFunction}>
+          <button className="btn" onClick={submitFunction}>
             {user.admin ? "Schedule" : "Request"}
           </button>
         ) : (
-          <button onClick={submitFunction}>Update</button>
+          <button className="btn" onClick={submitFunction}>
+            Update
+          </button>
         )}
         {title === "Edit Equipment Maintenance" && (
           <>
-            <button onClick={updateFunction}>
+            <button className="btn" onClick={updateFunction}>
               Cancel Scheduled Maintenance
             </button>
-            <button onClick={deleteFunction}>Delete Ticket</button>
+            <button className="btn" onClick={deleteFunction}>
+              Delete Ticket
+            </button>
           </>
         )}
         <button
+          className="btn"
           onClick={() => {
             navigate("/maintenance")
           }}
