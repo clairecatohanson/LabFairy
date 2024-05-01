@@ -1,4 +1,3 @@
-import "./App.css"
 import { Route, Routes } from "react-router-dom"
 import { ApplicationViews } from "./views/ApplicationViews"
 import { AppWrapper } from "./context/AppWrapper"
