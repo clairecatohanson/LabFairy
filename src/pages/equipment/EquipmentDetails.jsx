@@ -8,8 +8,8 @@ import {
 import { getMaintenanceTickets } from "../../data/equipmentmaintenance"
 import { AppContext } from "../../context/AppWrapper"
 import { DeleteEquipmentModal } from "../../components/modals/DeleteEquipmentModal"
-import "./equipmentDetails.css"
 import { ShortMaintenanceList } from "../../components/ShortMaintenanceList"
+import "./equipmentDetails.css"
 
 export const EquipmentDetails = () => {
   const { id } = useParams()

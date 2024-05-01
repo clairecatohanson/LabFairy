@@ -7,6 +7,7 @@ import { EditEquipmentMaintenance } from "../pages/maintenanceTickets/EditEquipm
 import { AllEquipment } from "../pages/equipment/AllEquipment"
 import { EquipmentDetails } from "../pages/equipment/EquipmentDetails"
 import { AllMaintenance } from "../pages/maintenanceTickets/AllMaintenance"
+import { Home } from "../pages/Home"
 
 export const ApplicationViews = () => {
   return (
@@ -20,6 +21,7 @@ export const ApplicationViews = () => {
           </>
         }
       >
+        <Route path="" element={<Home />} />
         <Route path="equipment" element={<AllEquipment />} />
         <Route path="equipment/:id" element={<EquipmentDetails />} />
         <Route path="new-equipment" element={<NewEquipment />} />
