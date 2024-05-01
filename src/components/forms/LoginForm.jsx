@@ -9,8 +9,10 @@ export const LoginForm = ({ formEl, submitFunction, title }) => {
         <Input id="password" label="Password" type="password" />
       </form>
       <div>
-        <button onClick={submitFunction}>Login</button>
-        <button>Register</button>
+        <button className="btn" onClick={submitFunction}>
+          Login
+        </button>
+        <button className="btn">Register</button>
       </div>
     </FormLayout>
   )

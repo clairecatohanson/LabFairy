@@ -25,6 +25,7 @@ export const AllMaintenance = () => {
         <div className="page-actions">
           <div className="filter-bar">Filter Bar (Stretch Goal)</div>
           <button
+            className="btn"
             onClick={() => {
               navigate("/new-maintenance")
             }}

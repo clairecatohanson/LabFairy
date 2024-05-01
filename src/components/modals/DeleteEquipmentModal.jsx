@@ -25,10 +25,11 @@ export const DeleteEquipmentModal = ({
         </p>
       </div>
       <div>
-        <button onClick={destroyEquipment}>
+        <button className="btn" onClick={destroyEquipment}>
           Yes, permanently delete equipment and remove its data
         </button>
         <button
+          className="btn"
           onClick={() => {
             setShowModal(false)
           }}
