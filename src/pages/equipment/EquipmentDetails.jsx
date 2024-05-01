@@ -9,6 +9,7 @@ import { getMaintenanceTickets } from "../../data/equipmentmaintenance"
 import { AppContext } from "../../context/AppWrapper"
 import { DeleteEquipmentModal } from "../../components/modals/DeleteEquipmentModal"
 import "./equipmentDetails.css"
+import { ShortMaintenanceList } from "../../components/ShortMaintenanceList"
 
 export const EquipmentDetails = () => {
   const { id } = useParams()
@@ -117,49 +118,14 @@ export const EquipmentDetails = () => {
             </div>
           </section>
           <section className="page-section maintenance">
-            <div>
-              <h3>Upcoming Maintenance</h3>
-              {upcomingMaintenance.map((ticket) => (
-                <div key={`ticket-${ticket.id}`}>
-                  <h4>{ticket.maintenance.name}</h4>
-                  <div>
-                    Date Needed: {ticket.date_needed} (Requested by{" "}
-                    {ticket.user.first_name} {ticket.user.last_name})
-                  </div>
-                  <div>Date Scheduled: {ticket.date_scheduled}</div>
-                  <div>
-                    Suggested Maintenance Interval:{" "}
-                    {ticket.maintenance.days_interval ? (
-                      <div>{ticket.maintenance.days_interval} Days</div>
-                    ) : (
-                      <div>One-time maintenance</div>
-                    )}
-                  </div>
-                </div>
-              ))}
-            </div>
-            <div>
-              <h3>Last Completed Maintenance</h3>
-              {completedMaintenance.map((ticket) => (
-                <div key={`ticket-${ticket.id}`}>
-                  <h4>{ticket.maintenance.name}</h4>
-                  <div>
-                    Date Needed: {ticket.date_needed} (Requested by{" "}
-                    {ticket.user.first_name} {ticket.user.last_name})
-                  </div>
-                  <div>Date Scheduled: {ticket.date_scheduled}</div>
-                  <div>Date Completed: {ticket.date_completed}</div>
-                  <div>
-                    Suggested Maintenance Interval:{" "}
-                    {ticket.maintenance.days_interval ? (
-                      <div>{ticket.maintenance.days_interval} Days</div>
-                    ) : (
-                      <div>One-time maintenance</div>
-                    )}
-                  </div>
-                </div>
-              ))}
-            </div>
+            <ShortMaintenanceList
+              maintenanceList={upcomingMaintenance}
+              title="Upcoming Maintenance"
+            />
+            <ShortMaintenanceList
+              maintenanceList={completedMaintenance}
+              title="Last Completed Maintenance"
+            />
           </section>
         </div>
       </div>
