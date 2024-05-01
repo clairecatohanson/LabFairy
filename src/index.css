@@ -1,3 +1,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.nav-link {
+  @apply w-fit p-2 border border-pink-400/0 rounded-lg hover:border hover:border-pink-400;
+}
