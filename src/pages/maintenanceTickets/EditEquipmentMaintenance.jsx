@@ -38,11 +38,15 @@ export const EditEquipmentMaintenance = () => {
         <>
           <div>
             <div className="form-element-label">Equipment</div>
-            <div className="form-element-locked">{ticket.equipment.name}</div>
+            <div className="form-element-locked w-96 centered">
+              {ticket.equipment.name}
+            </div>
           </div>
           <div>
             <div className="form-element-label">Maintenance Type</div>
-            <div className="form-element-locked">{ticket.maintenance.name}</div>
+            <div className="form-element-locked w-96 centered">
+              {ticket.maintenance.name}
+            </div>
           </div>
         </>
       )
