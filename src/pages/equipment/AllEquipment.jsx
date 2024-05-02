@@ -19,14 +19,16 @@ export const AllEquipment = () => {
   }, [])
 
   return (
-    <div>
-      <header>
-        <h2>All Lab Equipment</h2>
-        <div className="page-actions">
-          <div className="filter-bar">Filter Bar (Stretch Goal)</div>
+    <div className="page-container">
+      <header className="page-header">
+        <h2 className="page-heading mb-12">All Lab Equipment</h2>
+        <div className="page-header-actions">
+          <div className="min-w-[28rem] bg-pink-100 rounded-lg">
+            Filter Bar (Stretch Goal)
+          </div>
           {user.admin && (
             <button
-              className="btn"
+              className="btn bg-pink-100"
               onClick={() => {
                 navigate("/new-equipment")
               }}
@@ -36,16 +38,14 @@ export const AllEquipment = () => {
           )}
         </div>
       </header>
-      <section className="equipment-cards-container">
-        <div className="equipment-cards">
-          {allEquipment.map((equipment) => (
-            <EquipmentCard
-              key={equipment.id}
-              equipment={equipment}
-              userHasAccess={equipment.has_access}
-            ></EquipmentCard>
-          ))}
-        </div>
+      <section className="equipment-cards flex flex-wrap justify-center">
+        {allEquipment.map((equipment) => (
+          <EquipmentCard
+            key={equipment.id}
+            equipment={equipment}
+            userHasAccess={equipment.has_access}
+          ></EquipmentCard>
+        ))}
       </section>
     </div>
   )

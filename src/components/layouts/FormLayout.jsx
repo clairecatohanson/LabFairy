@@ -7,7 +7,7 @@ export const FormLayout = ({ title, children }) => {
     // Page Container
     <div className="page-container">
       <header className="page-header">
-        <h2>{title}</h2>
+        <h2 className="page-heading">{title}</h2>
       </header>
       {/* Form & Form Actions */}
       <main className="form-container">

@@ -8,15 +8,19 @@ export const MaintenanceCard = ({ ticket }) => {
   const { user } = useContext(AppContext)
 
   const [tag, setTag] = useState("")
+  const [tagColor, setTagColor] = useState("")
 
   useEffect(() => {
     if (ticket.id) {
       if (ticket.date_completed) {
         setTag("Completed")
+        setTagColor("bg-bluegreen-300")
       } else if (ticket.date_scheduled) {
         setTag("Scheduled")
+        setTagColor("bg-pink-500 text-pink-100")
       } else if (ticket.date_needed) {
         setTag("Requested")
+        setTagColor("bg-bluegreen-500 text-gray-100")
       } else {
         setTag("")
       }
@@ -26,9 +30,10 @@ export const MaintenanceCard = ({ ticket }) => {
   return (
     <CardLayout
       tag={tag}
+      tagColor={tagColor}
       title={`${ticket.equipment.name}: ${ticket.maintenance.name}`}
     >
-      <div className="maintenance-content">
+      <>
         <div className="ticket-info">
           <div className="requester">
             Requested by: {ticket.user?.first_name} {ticket.user?.last_name}
@@ -48,11 +53,11 @@ export const MaintenanceCard = ({ ticket }) => {
             {ticket.date_completed ? ticket.date_completed : "Pending"}
           </div>
         </div>
-      </div>
+      </>
       <div className="maintenance-actions">
         {user.admin & !ticket.date_completed ? (
           <button
-            className="btn"
+            className="btn border-pink-500 bg-gray-200"
             onClick={() => {
               navigate(`/maintenance/${ticket.id}/edit`)
             }}
