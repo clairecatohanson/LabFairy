@@ -52,8 +52,9 @@ export const NewEquipment = () => {
   return (
     <EquipmentForm
       formEl={formEl}
-      submitFunction={saveEquipment}
+      heading="Create New Equipment"
       cancelFunction={cancelClick}
+      submitFunction={saveEquipment}
       title="Add New Equipment"
     />
   )

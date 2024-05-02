@@ -1,13 +1,17 @@
-import "./elements.css"
+// import "./elements.css"
 
-export const Textarea = ({ id, label, placeholder }) => {
+export const Textarea = ({
+  id,
+  placeholder,
+  width = undefined,
+  height = undefined,
+}) => {
   return (
-    <fieldset className="form-fieldset">
-      {label && <label className="element-label">{label}</label>}
+    <fieldset>
       <textarea
+        className={`form-element ${width} ${height}`}
         id={id}
         placeholder={placeholder}
-        className="form-textarea"
       ></textarea>
     </fieldset>
   )

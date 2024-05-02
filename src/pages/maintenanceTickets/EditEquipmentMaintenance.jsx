@@ -37,12 +37,12 @@ export const EditEquipmentMaintenance = () => {
       return (
         <>
           <div>
-            <div>Equipment</div>
-            <div>{ticket.equipment.name}</div>
+            <div className="form-element-label">Equipment</div>
+            <div className="form-element-locked">{ticket.equipment.name}</div>
           </div>
           <div>
-            <div>Maintenance Type</div>
-            <div>{ticket.maintenance.name}</div>
+            <div className="form-element-label">Maintenance Type</div>
+            <div className="form-element-locked">{ticket.maintenance.name}</div>
           </div>
         </>
       )
@@ -73,12 +73,14 @@ export const EditEquipmentMaintenance = () => {
 
   return (
     <EquipmentMaintenanceForm
+      deleteFunction={deleteTicket}
       formEl={formEl}
+      heading="Edit Maintenance Ticket"
+      id={id}
       staticJSX={<StaticJSX />}
       submitFunction={saveTicket}
-      deleteFunction={deleteTicket}
-      updateFunction={cancelMaintenance}
       title="Edit Equipment Maintenance"
+      updateFunction={cancelMaintenance}
     />
   )
 }

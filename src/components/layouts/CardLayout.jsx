@@ -1,4 +1,4 @@
-import "./card.css"
+// import "./card.css"
 
 export const CardLayout = ({ children, tag = undefined, title }) => {
   const [content, actions] = children

@@ -1,17 +1,24 @@
-import "./form.css"
+// import "./form.css"
 
 export const FormLayout = ({ title, children }) => {
-  const [formContent, actions] = children
+  const [formContent, primaryActions, additionalActions] = children
 
   return (
-    <div className="global-container">
-      <header>
-        <h3>{title}</h3>
+    // Page Container
+    <div className="page-container">
+      <header className="page-header">
+        <h2>{title}</h2>
       </header>
-      <section>
-        <div className="form-container">{formContent}</div>
-        <div className="actions-container">{actions}</div>
-      </section>
+      {/* Form & Form Actions */}
+      <main className="form-container">
+        {/* Form Container */}
+        <>{formContent}</>
+        {/* Actions Container */}
+        <div className="centered">{primaryActions}</div>
+        {additionalActions && (
+          <div className="centered mt-4">{additionalActions}</div>
+        )}
+      </main>
     </div>
   )
 }

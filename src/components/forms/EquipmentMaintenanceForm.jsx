@@ -8,12 +8,14 @@ import { Input } from "../form-elements/Input"
 import { useNavigate } from "react-router-dom"
 
 export const EquipmentMaintenanceForm = ({
+  deleteFunction = undefined,
   formEl,
+  heading,
+  id = undefined,
   staticJSX = undefined,
   submitFunction,
-  deleteFunction = undefined,
-  updateFunction = undefined,
   title,
+  updateFunction = undefined,
 }) => {
   const { user } = useContext(AppContext)
   const navigate = useNavigate()
@@ -37,21 +39,22 @@ export const EquipmentMaintenanceForm = ({
 
   return (
     <FormLayout title={title}>
-      <form ref={formEl}>
+      <form className="form" ref={formEl}>
+        <h3 className="form-heading">{heading}</h3>
         {staticJSX && staticJSX}
-        {title !== "Edit Equipment Maintenance" && (
+        {!id && (
           <>
             <Select
               id="equipment"
               defaultOption="Select equipment"
               dropdownOptions={equipmentList}
-              label="Equipment"
+              width="w-96"
             />
             <Select
               id="maintenanceType"
               defaultOption="Select maintenance type"
               dropdownOptions={maintenanceTypes}
-              label="Maintenance Type"
+              width="w-96"
             />
           </>
         )}
@@ -60,8 +63,8 @@ export const EquipmentMaintenanceForm = ({
           <Input id="dateScheduled" label="Date Scheduled" type="date" />
         )}
       </form>
-      <div>
-        {title === "Schedule Equipment Maintenance" ? (
+      <div className="form-actions">
+        {!id ? (
           <button className="btn" onClick={submitFunction}>
             {user.admin ? "Schedule" : "Request"}
           </button>
@@ -69,16 +72,6 @@ export const EquipmentMaintenanceForm = ({
           <button className="btn" onClick={submitFunction}>
             Update
           </button>
-        )}
-        {title === "Edit Equipment Maintenance" && (
-          <>
-            <button className="btn" onClick={updateFunction}>
-              Cancel Scheduled Maintenance
-            </button>
-            <button className="btn" onClick={deleteFunction}>
-              Delete Ticket
-            </button>
-          </>
         )}
         <button
           className="btn"
@@ -89,6 +82,16 @@ export const EquipmentMaintenanceForm = ({
           Go Back
         </button>
       </div>
+      {id && (
+        <div className="form-actions">
+          <button className="btn" onClick={updateFunction}>
+            Cancel Maintenance
+          </button>
+          <button className="btn" onClick={deleteFunction}>
+            Cancel and Delete
+          </button>
+        </div>
+      )}
     </FormLayout>
   )
 }

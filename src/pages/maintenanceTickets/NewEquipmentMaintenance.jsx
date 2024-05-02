@@ -29,6 +29,7 @@ export const NewEquipmentMaintenance = () => {
   return (
     <EquipmentMaintenanceForm
       formEl={formEl}
+      heading="Create Maintenance Ticket"
       submitFunction={saveTicket}
       title="Schedule Equipment Maintenance"
     />
