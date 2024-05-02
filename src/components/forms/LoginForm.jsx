@@ -4,11 +4,23 @@ import { FormLayout } from "../layouts/FormLayout"
 export const LoginForm = ({ formEl, submitFunction, title }) => {
   return (
     <FormLayout title={title}>
-      <form ref={formEl}>
-        <Input id="username" label="Username" type="text" />
-        <Input id="password" label="Password" type="password" />
+      <form className="form" ref={formEl}>
+        <Input
+          addedClasses="text-center"
+          id="username"
+          label="Username"
+          type="text"
+          width="w-96"
+        />
+        <Input
+          addedClasses="text-center"
+          id="password"
+          label="Password"
+          type="password"
+          width="w-96"
+        />
       </form>
-      <div>
+      <div className="form-actions">
         <button className="btn" onClick={submitFunction}>
           Login
         </button>

@@ -5,6 +5,7 @@ export default {
     extend: {
       fontFamily: {
         sans: ["Lato", "ui-sans-serif", "system-ui"],
+        serif: ["Roboto Slab", "Georgia", "ui-serif", "system-ui"],
       },
     },
     colors: {

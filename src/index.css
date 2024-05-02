@@ -2,9 +2,34 @@
 @tailwind components;
 @tailwind utilities;
 
+/* ------------------------------- */
+/* GENERAL STYLES */
 .centered {
   @apply flex justify-center items-center;
 }
+/* -------------------------------------------------------- */
+
+/* ------------------------------- */
+/* PAGE STYLES */
+.page-container {
+  @apply bg-pink-100 min-h-screen pt-4 pb-12;
+}
+
+.page-header {
+  @apply bg-pink-500  w-[98%] mx-auto rounded-lg py-6 px-3 mb-12;
+}
+
+.page-heading {
+  @apply text-gray-100 text-3xl font-serif;
+}
+
+.page-header-actions {
+  @apply flex flex-wrap justify-between;
+}
+/* -------------------------------------------------------- */
+
+/* ------------------------------- */
+/* SMALL COMPONENTS */
 .nav-link {
   @apply w-fit p-2 border border-pink-400/0 rounded-lg hover:border hover:border-pink-400;
 }
@@ -12,15 +37,10 @@
 .btn {
   @apply border px-4 py-2 rounded;
 }
+/* -------------------------------------------------------- */
 
-.page-container {
-  @apply bg-pink-100 min-h-screen pt-4 pb-12;
-}
-
-.page-header {
-  @apply bg-pink-500 text-gray-100 text-3xl font-bold font-serif w-[98%] mx-auto rounded-lg py-6 pl-3 mb-12;
-}
-
+/* ------------------------------- */
+/* FORMS */
 .form-container {
   @apply bg-white w-[90%] max-w-4xl mx-auto mb-12 p-6 rounded-2xl shadow-md shadow-bluegreen-400/40;
 }
@@ -59,4 +79,27 @@
 
 .form-checkbox {
   @apply w-3.5 h-3.5;
+}
+/* -------------------------------------------------------- */
+
+/* ------------------------------- */
+/* CARDS */
+.card {
+  @apply m-2 border shadow-lg border-pink-700 bg-gray-100 text-pink-700 rounded-lg;
+}
+
+.card-header {
+  @apply font-serif text-center text-xl bg-purple-900 text-pink-300 px-4 py-2 rounded-t;
+}
+
+.card-content {
+  @apply p-5 flex justify-between;
+}
+
+.card-actions {
+  @apply flex flex-col justify-between items-center;
+}
+
+.card-tag {
+  @apply p-2 rounded-2xl;
 }

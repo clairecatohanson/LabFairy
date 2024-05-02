@@ -1,9 +1,10 @@
 // import "./elements.css"
 
 export const Input = ({
-  id,
+  addedClasses,
   checkboxes = undefined,
   heading = undefined,
+  id,
   label = undefined,
   name = undefined,
   placeholder = "",
@@ -42,7 +43,7 @@ export const Input = ({
         <div>
           <input
             id={id}
-            className={`form-element ${width}`}
+            className={`form-element ${width} ${addedClasses}`}
             type={type}
             name={name}
             placeholder={placeholder}

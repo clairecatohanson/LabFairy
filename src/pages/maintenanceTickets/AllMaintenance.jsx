@@ -19,13 +19,15 @@ export const AllMaintenance = () => {
   }, [])
 
   return (
-    <div>
-      <header>
-        <h2>Maintenance Tickets</h2>
-        <div className="page-actions">
-          <div className="filter-bar">Filter Bar (Stretch Goal)</div>
+    <div className="page-container">
+      <header className="page-header">
+        <h2 className="page-heading mb-12">Maintenance Tickets</h2>
+        <div className="page-header-actions">
+          <div className="min-w-[28rem] bg-pink-100 rounded-lg">
+            Filter Bar (Stretch Goal)
+          </div>
           <button
-            className="btn"
+            className="btn bg-pink-100"
             onClick={() => {
               navigate("/new-maintenance")
             }}
@@ -34,12 +36,10 @@ export const AllMaintenance = () => {
           </button>
         </div>
       </header>
-      <section className="maintenance-cards-container">
-        <div className="maintenance-cards">
-          {maintenanceTickets.map((ticket) => (
-            <MaintenanceCard key={`ticket=${ticket.id}`} ticket={ticket} />
-          ))}
-        </div>
+      <section className="maintenance-cards max-w-4xl mx-auto space-y-4">
+        {maintenanceTickets.map((ticket) => (
+          <MaintenanceCard key={`ticket=${ticket.id}`} ticket={ticket} />
+        ))}
       </section>
     </div>
   )

@@ -5,21 +5,30 @@ import { useNavigate } from "react-router-dom"
 export const EquipmentCard = ({ equipment, userHasAccess }) => {
   const navigate = useNavigate()
   const [tag, setTag] = useState("")
+  const [tagColor, setTagColor] = useState("")
 
   useEffect(() => {
     if (equipment.id) {
       if (equipment.archived) {
         setTag("Archived")
+        setTagColor("bg-purple-400")
       } else {
         setTag("Active")
+        setTagColor("bg-bluegreen-500 text-gray-100")
       }
     }
   }, [equipment])
 
   return (
-    <CardLayout tag={tag} title={equipment.name}>
-      <div className="equipment-content">
-        <div>
+    <CardLayout
+      tag={tag}
+      tagColor={tagColor}
+      title={equipment.name}
+      width="w-80"
+      height="h-72"
+    >
+      <>
+        <div className="italic mb-3">
           <div>
             {equipment.location.room.building.short_name}{" "}
             {equipment.location.room.name}
@@ -27,8 +36,7 @@ export const EquipmentCard = ({ equipment, userHasAccess }) => {
           <div>{equipment.location.name}</div>
         </div>
         <div>
-          <h4>Shared By:</h4>
-          <ul>
+          <ul className="list-disc ml-4">
             {equipment.equipment_labs.map((equipmentLab) => (
               <li key={`lab-${equipmentLab.lab.id}`}>
                 {equipmentLab.lab.name}
@@ -36,11 +44,11 @@ export const EquipmentCard = ({ equipment, userHasAccess }) => {
             ))}
           </ul>
         </div>
-      </div>
-      <div className="equipment-actions">
+      </>
+      <>
         {userHasAccess && (
           <button
-            className="btn"
+            className="btn border-pink-500 bg-gray-200"
             onClick={() => {
               navigate(`/equipment/${equipment.id}`)
             }}
@@ -48,7 +56,7 @@ export const EquipmentCard = ({ equipment, userHasAccess }) => {
             Details
           </button>
         )}
-      </div>
+      </>
     </CardLayout>
   )
 }
