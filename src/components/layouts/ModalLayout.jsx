@@ -1,4 +1,4 @@
-import "./modal.css"
+// import "./modal.css"
 
 export const ModalLayout = ({ children, title }) => {
   const [content, actions] = children

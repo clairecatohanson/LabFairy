@@ -8,6 +8,7 @@ import { getBuildings, getRooms, getLocations } from "../../data/locations"
 
 export const EquipmentForm = ({
   formEl,
+  heading,
   cancelFunction,
   submitFunction,
   title,
@@ -73,79 +74,71 @@ export const EquipmentForm = ({
 
   return (
     <FormLayout title={title}>
-      <form ref={formEl}>
+      <form className="form" ref={formEl}>
+        <h3 className="form-heading">{heading}</h3>
         <Input
           id="name"
-          label="Equipment Name"
-          placeholder="e.g. Ultracentrifuge"
+          placeholder="Equipment Name"
           type="text"
+          width="w-96"
         />
-        <fieldset className="form-section">
-          {title === "Add New Equipment" && (
-            <>
-              <div className="form-fieldset">
-                <label htmlFor="building" className="element-label">
-                  Building
-                </label>
-                <div className="select-container">
-                  <select
-                    id="building"
-                    onChange={(e) => {
-                      setBuilding(parseInt(e.target.value))
-                    }}
-                  >
-                    <option value="0">Select building</option>
-                    {buildings.map((building) => (
-                      <option key={building.id} value={building.id}>
-                        {building.name}
-                      </option>
-                    ))}
-                  </select>
-                </div>
-              </div>
-              <div className="form-fieldset">
-                <label htmlFor="room" className="element-label">
-                  Room
-                </label>
-                <div className="select-container">
-                  <select
-                    id="room"
-                    onChange={(e) => {
-                      setRoom(parseInt(e.target.value))
-                    }}
-                  >
-                    <option value="0">Select room</option>
-                    {rooms.map((room) => (
-                      <option key={room.id} value={room.id}>
-                        {room.name}
-                      </option>
-                    ))}
-                  </select>
-                </div>
-              </div>
-              <Select
-                id="location"
-                defaultOption="Select location"
-                dropdownOptions={locations}
-                label="Location"
-              />
-            </>
-          )}
-        </fieldset>
+        {title === "Add New Equipment" && (
+          <fieldset className="flex flex-col space-y-2 pt-2 pb-6">
+            <h4 className="centered font-bold text-xl text-pink-600 mb-2">
+              Location
+            </h4>
+            <select
+              className="form-select-element w-96"
+              id="building"
+              onChange={(e) => {
+                setBuilding(parseInt(e.target.value))
+              }}
+            >
+              <option value="0">Select building</option>
+              {buildings.map((building) => (
+                <option key={building.id} value={building.id}>
+                  {building.name}
+                </option>
+              ))}
+            </select>
+            <select
+              className="form-select-element w-96"
+              id="room"
+              onChange={(e) => {
+                setRoom(parseInt(e.target.value))
+              }}
+            >
+              <option value="0">Select room</option>
+              {rooms.map((room) => (
+                <option key={room.id} value={room.id}>
+                  {room.name}
+                </option>
+              ))}
+            </select>
+            <Select
+              id="location"
+              defaultOption="Select location"
+              dropdownOptions={locations}
+              width="w-96"
+            />
+          </fieldset>
+        )}
         <Textarea
           id="description"
-          label="Description"
-          placeholder="e.g. High-speed centrifuge for pelleting cell membrane"
+          placeholder="Description"
+          width="w-96"
+          height="h-40"
         />
         <Input
           id="labs"
           checkboxes={labs}
-          label="Labs"
+          heading="Labs With Access"
           name="labs"
           type="checkbox"
+          width="w-96"
         />
       </form>
-      <div className="btns-container">
+      <div className="form-actions">
         <button className="btn" onClick={submitFunction}>
           {title === "Add New Equipment" ? "Create" : "Update"}
         </button>

@@ -1,42 +1,48 @@
-import "./elements.css"
+// import "./elements.css"
 
 export const Input = ({
   id,
   checkboxes = undefined,
+  heading = undefined,
   label = undefined,
   name = undefined,
   placeholder = "",
   refEl = undefined,
   type,
+  width = undefined,
 }) => {
   return (
-    <fieldset className="form-fieldset">
+    <fieldset>
       {label && (
-        <label htmlFor={id} className="element-label">
+        <label className="form-element-label" htmlFor={id}>
           {label}
         </label>
       )}
       {checkboxes ? (
-        <div className="checkbox-items">
+        <div className={`form-element ${width}`}>
+          <h3 className="centered font-bold text-xl text-pink-600 mb-4">
+            {heading}
+          </h3>
           {checkboxes.map((checkbox) => (
-            <div className="checkbox-item" key={checkbox.id}>
-              <label htmlFor={checkbox.id}>{checkbox.name}</label>
-              <div className="checkbox">
+            <div className="w-64 mx-auto" key={checkbox.id}>
+              <div className="form-checkbox-container">
+                <label htmlFor={checkbox.id}>{checkbox.name}</label>
                 <input
                   id={checkbox.id}
                   name={name}
                   ref={refEl}
                   type="checkbox"
-                  className="checkbox-input"
+                  className="form-checkbox"
                 />
               </div>
             </div>
           ))}
         </div>
       ) : (
-        <div className="input-container">
+        <div>
           <input
             id={id}
+            className={`form-element ${width}`}
             type={type}
             name={name}
             placeholder={placeholder}

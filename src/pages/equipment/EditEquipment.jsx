@@ -106,8 +106,9 @@ export const EditEquipment = () => {
   return (
     <EquipmentForm
       formEl={formEl}
-      submitFunction={saveEquipment}
+      heading="Edit Equipment"
       cancelFunction={cancelClick}
+      submitFunction={saveEquipment}
       title="Edit Equipment"
     />
   )
