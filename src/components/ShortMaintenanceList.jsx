@@ -64,9 +64,7 @@ export const ShortMaintenanceList = ({
       ) : (
         <div>
           <h3 className="dashboard-heading">{title}</h3>
-          <div className="mb-4">
-            There are no {title.toLowerCase()} tickets for this equipment
-          </div>
+          <div className="mb-4">There are no {title.toLowerCase()} tickets</div>
         </div>
       )}
     </div>
