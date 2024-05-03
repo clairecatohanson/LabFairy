@@ -12,7 +12,7 @@ export const DeleteEquipmentModal = ({
 
   return (
     <ModalLayout title={"Confirm Equipment Destruction"}>
-      <div>
+      <div className="flex flex-col space-y-2 mb-6">
         <p>Are you sure you want to destroy {equipment.name}?</p>
         <p>
           Destroying equipment will permanently remove the equipment and all of
@@ -24,7 +24,7 @@ export const DeleteEquipmentModal = ({
           tickets, click No below and choose Archive instead.
         </p>
       </div>
-      <div>
+      <div className="flex flex-col justify-center items-center space-y-4">
         <button className="btn" onClick={destroyEquipment}>
           Yes, permanently delete equipment and remove its data
         </button>
@@ -34,7 +34,7 @@ export const DeleteEquipmentModal = ({
             setShowModal(false)
           }}
         >
-          No, keep equipment data
+          No, keep equipment and its data
         </button>
       </div>
     </ModalLayout>

@@ -5,9 +5,11 @@ export const ModalLayout = ({ children, title }) => {
 
   return (
     <div className="modal-overlay">
-      <header>{title}</header>
-      <section>{content}</section>
-      <div>{actions}</div>
+      <header className="text-center text-lg text-purple-700 font-serif mb-4">
+        {title}
+      </header>
+      <section className="centered">{content}</section>
+      <div className="centered">{actions}</div>
     </div>
   )
 }
