@@ -3,7 +3,6 @@ import { getEquipment } from "../../data/equipment"
 import { EquipmentCard } from "../../components/cards/EquipmentCard"
 import { useNavigate } from "react-router-dom"
 import { AppContext } from "../../context/AppWrapper"
-// import "./allEquipment.css"
 
 export const AllEquipment = () => {
   const navigate = useNavigate()

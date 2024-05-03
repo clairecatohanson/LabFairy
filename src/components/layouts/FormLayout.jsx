@@ -1,5 +1,3 @@
-// import "./form.css"
-
 export const FormLayout = ({ title, children }) => {
   const [formContent, primaryActions, additionalActions] = children
 

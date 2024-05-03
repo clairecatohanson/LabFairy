@@ -1,5 +1,3 @@
-// import "./elements.css"
-
 export const Select = ({ id, defaultOption, dropdownOptions, width }) => {
   return (
     <fieldset htmlFor={id}>

@@ -1,5 +1,3 @@
-// import "./card.css"
-
 export const CardLayout = ({
   children,
   height = undefined,

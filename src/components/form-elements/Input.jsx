@@ -1,5 +1,3 @@
-// import "./elements.css"
-
 export const Input = ({
   addedClasses,
   checkboxes = undefined,

@@ -9,7 +9,6 @@ import { getMaintenanceTickets } from "../../data/equipmentmaintenance"
 import { AppContext } from "../../context/AppWrapper"
 import { DeleteEquipmentModal } from "../../components/modals/DeleteEquipmentModal"
 import { ShortMaintenanceList } from "../../components/ShortMaintenanceList"
-// import "./equipmentDetails.css"
 
 export const EquipmentDetails = () => {
   const { id } = useParams()
