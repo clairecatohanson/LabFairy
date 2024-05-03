@@ -1,26 +1,18 @@
-import "./App.css"
 import { Route, Routes } from "react-router-dom"
-import { Authorized } from "./views/Authorized"
 import { ApplicationViews } from "./views/ApplicationViews"
-import { NavBar } from "./components/nav/NavBar"
+import { AppWrapper } from "./context/AppWrapper"
+import { Login } from "./pages/Login"
 
 export const App = () => {
   return (
     <Routes>
-      <Route
-        path="/"
-        element={
-          <>
-            <NavBar />
-          </>
-        }
-      />
+      <Route path="/login" element={<Login />} />
       <Route
         path="*"
         element={
-          <Authorized>
+          <AppWrapper>
             <ApplicationViews />
-          </Authorized>
+          </AppWrapper>
         }
       />
     </Routes>
