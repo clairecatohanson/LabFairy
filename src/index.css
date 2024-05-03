@@ -40,6 +40,40 @@
 /* -------------------------------------------------------- */
 
 /* ------------------------------- */
+/* CARDS */
+.card {
+  @apply m-2 border shadow-lg border-pink-700 bg-gray-100 text-pink-700 rounded-lg;
+}
+
+.card-header {
+  @apply font-serif text-center text-xl bg-purple-900 text-pink-300 px-4 py-2 rounded-t;
+}
+
+.card-content {
+  @apply p-5 flex justify-between;
+}
+
+.card-actions {
+  @apply flex flex-col justify-between items-center;
+}
+
+.card-tag {
+  @apply p-2 rounded-2xl;
+}
+/* -------------------------------------------------------- */
+
+/* ------------------------------- */
+/* DASHBOARD */
+.dashboard-card {
+  @apply min-w-80 min-h-60 border border-black rounded-lg p-4;
+}
+
+.dashboard-heading {
+  @apply text-center text-lg font-serif mb-4;
+}
+/* -------------------------------------------------------- */
+
+/* ------------------------------- */
 /* FORMS */
 .form-container {
   @apply bg-white w-[90%] max-w-4xl mx-auto mb-12 p-6 rounded-2xl shadow-md shadow-bluegreen-400/40;
@@ -83,34 +117,18 @@
 /* -------------------------------------------------------- */
 
 /* ------------------------------- */
-/* CARDS */
-.card {
-  @apply m-2 border shadow-lg border-pink-700 bg-gray-100 text-pink-700 rounded-lg;
+/* MODALS */
+.modal-overlay {
+  @apply absolute top-[20%] left-[20%] w-[60%] min-h-fit bg-white border-2 border-pink-600 rounded-lg px-10 py-16 shadow-lg;
 }
 
-.card-header {
-  @apply font-serif text-center text-xl bg-purple-900 text-pink-300 px-4 py-2 rounded-t;
-}
-
-.card-content {
-  @apply p-5 flex justify-between;
-}
-
-.card-actions {
-  @apply flex flex-col justify-between items-center;
-}
-
-.card-tag {
-  @apply p-2 rounded-2xl;
-}
-/* -------------------------------------------------------- */
-
-/* ------------------------------- */
-/* DASHBOARD */
-.dashboard-card {
-  @apply min-w-80 min-h-60 border border-black rounded-lg p-4;
-}
-
-.dashboard-heading {
-  @apply text-center text-lg font-serif mb-4;
-}
+/* position: absolute;
+top: 20%;
+left: 20%;
+width: 60%;
+min-height: fit-content;
+background-color: white;
+border: solid black 2px;
+border-radius: 20px;
+padding: 20px;
+} */
