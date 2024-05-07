@@ -3,7 +3,12 @@ import { Input } from "../form-elements/Input"
 import { useRef } from "react"
 import { updateTicket } from "../../data/equipmentmaintenance"
 
-export const CompleteMaintenance = ({ setShowModal, ticketId, title }) => {
+export const CompleteMaintenance = ({
+  setShowModal,
+  showModal,
+  ticketId,
+  title,
+}) => {
   const dateEl = useRef()
 
   const completeMaintenance = async () => {
@@ -13,6 +18,10 @@ export const CompleteMaintenance = ({ setShowModal, ticketId, title }) => {
     await updateTicket(ticketId, updatedTicket)
 
     setShowModal(false)
+  }
+
+  if (!showModal) {
+    return <></>
   }
 
   return (
