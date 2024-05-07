@@ -6,29 +6,35 @@ import {
   getMaintenanceTickets,
   updateTicket,
 } from "../../data/equipmentmaintenance"
+import { CompleteMaintenance } from "../../components/modals/CompleteMaintenance"
 
 export const EditEquipmentMaintenance = () => {
   const navigate = useNavigate()
   const { id } = useParams()
   const formEl = useRef()
 
+  const [showCompleteModal, setShowCompleteModal] = useState(false)
   const [ticket, setTicket] = useState({})
 
   useEffect(() => {
-    if (id) {
+    if (id && showCompleteModal == false) {
       getMaintenanceTickets({ ticketId: parseInt(id) }).then((ticketData) => {
         if (ticketData) {
           setTicket(ticketData)
         }
       })
     }
-  }, [id])
+  }, [id, showCompleteModal])
 
   useEffect(() => {
     if (ticket.id) {
       const { dateNeeded, dateScheduled } = formEl.current
       dateNeeded.value = ticket.date_needed
       dateScheduled.value = ticket.date_scheduled
+    }
+
+    if (ticket.date_completed) {
+      navigate("/maintenance")
     }
   }, [ticket])
 
@@ -76,15 +82,24 @@ export const EditEquipmentMaintenance = () => {
   }
 
   return (
-    <EquipmentMaintenanceForm
-      deleteFunction={deleteTicket}
-      formEl={formEl}
-      heading="Edit Maintenance Ticket"
-      id={id}
-      staticJSX={<StaticJSX />}
-      submitFunction={saveTicket}
-      title="Edit Equipment Maintenance"
-      updateFunction={cancelMaintenance}
-    />
+    <>
+      <CompleteMaintenance
+        setShowModal={setShowCompleteModal}
+        showModal={showCompleteModal}
+        ticketId={ticket.id}
+        title="Complete"
+      />
+      <EquipmentMaintenanceForm
+        deleteFunction={deleteTicket}
+        formEl={formEl}
+        heading="Edit Maintenance Ticket"
+        id={id}
+        setShowModal={setShowCompleteModal}
+        staticJSX={<StaticJSX />}
+        submitFunction={saveTicket}
+        title="Edit Equipment Maintenance"
+        updateFunction={cancelMaintenance}
+      />
+    </>
   )
 }

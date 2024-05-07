@@ -27,7 +27,7 @@ export const getMaintenanceTickets = async ({ ticketId, query } = {}) => {
 }
 
 export const updateTicket = async (ticketId, ticketObject) => {
-  return await fetchWithoutResponse(
+  return await fetchWithResponse(
     `maintenance/${ticketId}`,
     putOptions(ticketObject)
   )

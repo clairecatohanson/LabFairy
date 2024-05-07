@@ -12,6 +12,7 @@ export const EquipmentMaintenanceForm = ({
   formEl,
   heading,
   id = undefined,
+  setShowModal,
   staticJSX = undefined,
   submitFunction,
   title,
@@ -63,35 +64,49 @@ export const EquipmentMaintenanceForm = ({
           <Input id="dateScheduled" label="Date Scheduled" type="date" />
         )}
       </form>
-      <div className="form-actions">
-        {!id ? (
-          <button className="btn" onClick={submitFunction}>
-            {user.admin ? "Schedule" : "Request"}
-          </button>
-        ) : (
-          <button className="btn" onClick={submitFunction}>
-            Update
-          </button>
-        )}
-        <button
-          className="btn"
-          onClick={() => {
-            navigate("/maintenance")
-          }}
-        >
-          Go Back
-        </button>
-      </div>
-      {id && (
+      <div className="flex flex-col space-y-4 items-center">
         <div className="form-actions">
-          <button className="btn" onClick={updateFunction}>
-            Cancel Maintenance
-          </button>
-          <button className="btn" onClick={deleteFunction}>
-            Cancel and Delete
+          {!id ? (
+            <button className="btn" onClick={submitFunction}>
+              {user.admin ? "Schedule" : "Request"}
+            </button>
+          ) : (
+            <>
+              <button className="btn" onClick={submitFunction}>
+                Schedule
+              </button>
+              <button className="btn" onClick={updateFunction}>
+                Cancel
+              </button>
+              <button
+                className="btn"
+                onClick={() => {
+                  setShowModal(true)
+                }}
+              >
+                Complete
+              </button>
+            </>
+          )}
+        </div>
+        {id && (
+          <div className="form-actions">
+            <button className="btn" onClick={deleteFunction}>
+              Cancel and Delete
+            </button>
+          </div>
+        )}
+        <div className="form-actions">
+          <button
+            className="btn"
+            onClick={() => {
+              navigate("/maintenance")
+            }}
+          >
+            Go Back
           </button>
         </div>
-      )}
+      </div>
     </FormLayout>
   )
 }
