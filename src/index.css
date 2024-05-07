@@ -24,7 +24,7 @@
 }
 
 .page-header-actions {
-  @apply flex flex-wrap justify-between;
+  @apply flex flex-col space-y-2 items-start md:flex-row md:justify-between md:items-end;
 }
 /* -------------------------------------------------------- */
 

@@ -3,6 +3,7 @@ import { AppContext } from "../../context/AppWrapper"
 import { useNavigate } from "react-router-dom"
 import { getMaintenanceTickets } from "../../data/equipmentmaintenance"
 import { MaintenanceCard } from "../../components/cards/MaintenanceCard"
+import { MaintenanceFilterBar } from "../../components/filterbars/MaintenanceFilterBar"
 
 export const AllMaintenance = () => {
   const { user } = useContext(AppContext)
@@ -11,7 +12,7 @@ export const AllMaintenance = () => {
   const [maintenanceTickets, setMaintenanceTickets] = useState([])
 
   useEffect(() => {
-    getMaintenanceTickets().then((ticketData) => {
+    getMaintenanceTickets({ query: "progress=active" }).then((ticketData) => {
       if (ticketData) {
         setMaintenanceTickets(ticketData)
       }
@@ -23,9 +24,7 @@ export const AllMaintenance = () => {
       <header className="page-header">
         <h2 className="page-heading mb-12">Maintenance Tickets</h2>
         <div className="page-header-actions">
-          <div className="min-w-[28rem] bg-pink-100 rounded-lg">
-            Filter Bar (Stretch Goal)
-          </div>
+          <MaintenanceFilterBar setTickets={setMaintenanceTickets} />
           <button
             className="btn bg-pink-100"
             onClick={() => {
