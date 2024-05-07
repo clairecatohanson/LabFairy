@@ -7,7 +7,7 @@ import { EditEquipmentMaintenance } from "../pages/maintenanceTickets/EditEquipm
 import { AllEquipment } from "../pages/equipment/AllEquipment"
 import { EquipmentDetails } from "../pages/equipment/EquipmentDetails"
 import { AllMaintenance } from "../pages/maintenanceTickets/AllMaintenance"
-import { Home } from "../pages/Home"
+import { Home } from "../pages/home/Home"
 
 export const ApplicationViews = () => {
   return (
