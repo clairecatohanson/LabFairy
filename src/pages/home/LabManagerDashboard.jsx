@@ -61,70 +61,78 @@ export const LabManagerDashboard = ({
             <div className="flex flex-col space-y-6 items-center bg-bluegreen-100/30 rounded-xl p-4">
               <div>
                 <h3 className="dashboard-heading">Upcoming Maintenance</h3>
-                <div className="flex flex-col space-y-2 mb-6">
-                  {upcomingMaintenance.map((ticket) => (
-                    <div
-                      className="p-2 bg-bluegreen-300 rounded w-80 shadow-lg"
-                      key={ticket.id}
-                    >
-                      <h4 className="font-bold">
-                        {ticket.equipment.name} - {ticket.maintenance.name}
-                      </h4>
-                      <div className="flex flex-row justify-between items-center">
-                        <div>
-                          <div>Date Scheduled: </div>
-                          <div>{ticket.date_scheduled}</div>
-                        </div>
-                        <div>
-                          <button
-                            className="btn"
-                            onClick={() => {
-                              const id = ticket.id
-                              setShowCompleteModal(true)
-                              setTicketId(id)
-                            }}
-                          >
-                            <i className="fa-regular fa-circle-check"></i>
-                          </button>
+                {upcomingMaintenance.length ? (
+                  <div className="flex flex-col space-y-2 mb-6">
+                    {upcomingMaintenance.map((ticket) => (
+                      <div
+                        className="p-2 bg-bluegreen-300 rounded w-80 shadow-lg"
+                        key={ticket.id}
+                      >
+                        <h4 className="font-bold">
+                          {ticket.equipment.name} - {ticket.maintenance.name}
+                        </h4>
+                        <div className="flex flex-row justify-between items-center">
+                          <div>
+                            <div>Date Scheduled: </div>
+                            <div>{ticket.date_scheduled}</div>
+                          </div>
+                          <div>
+                            <button
+                              className="btn"
+                              onClick={() => {
+                                const id = ticket.id
+                                setShowCompleteModal(true)
+                                setTicketId(id)
+                              }}
+                            >
+                              <i className="fa-regular fa-circle-check"></i>
+                            </button>
+                          </div>
                         </div>
                       </div>
-                    </div>
-                  ))}
-                </div>
+                    ))}
+                  </div>
+                ) : (
+                  <div>There is currently no scheduled maintenance</div>
+                )}
               </div>
               {/* Pending Maintenance */}
               <div>
                 <h3 className="dashboard-heading">Pending Maintenance</h3>
-                <div className="flex flex-col space-y-2 mb-6">
-                  {pendingMaintenance.map((ticket) => (
-                    <div
-                      className="p-2 bg-bluegreen-300 rounded w-80 shadow-lg"
-                      key={ticket.id}
-                    >
-                      <h4 className="font-bold">
-                        {ticket.equipment.name} - {ticket.maintenance.name}
-                      </h4>
-                      <div className="flex flex-row justify-between items-center">
-                        <div>
-                          <div>Date Needed: </div>
-                          <div>{ticket.date_needed}</div>
-                        </div>
-                        <div>
-                          <button
-                            className="btn"
-                            onClick={() => {
-                              const id = ticket.id
-                              setShowScheduleModal(true)
-                              setTicketId(id)
-                            }}
-                          >
-                            <i className="fa-regular fa-calendar-check"></i>
-                          </button>
+                {pendingMaintenance.length ? (
+                  <div className="flex flex-col space-y-2 mb-6">
+                    {pendingMaintenance.map((ticket) => (
+                      <div
+                        className="p-2 bg-bluegreen-300 rounded w-80 shadow-lg"
+                        key={ticket.id}
+                      >
+                        <h4 className="font-bold">
+                          {ticket.equipment.name} - {ticket.maintenance.name}
+                        </h4>
+                        <div className="flex flex-row justify-between items-center">
+                          <div>
+                            <div>Date Needed: </div>
+                            <div>{ticket.date_needed}</div>
+                          </div>
+                          <div>
+                            <button
+                              className="btn"
+                              onClick={() => {
+                                const id = ticket.id
+                                setShowScheduleModal(true)
+                                setTicketId(id)
+                              }}
+                            >
+                              <i className="fa-regular fa-calendar-check"></i>
+                            </button>
+                          </div>
                         </div>
                       </div>
-                    </div>
-                  ))}
-                </div>
+                    ))}
+                  </div>
+                ) : (
+                  <div>There is currently no pending maintenance</div>
+                )}
               </div>
             </div>
           </section>

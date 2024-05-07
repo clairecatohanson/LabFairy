@@ -4,6 +4,8 @@ import { EquipmentCard } from "../../components/cards/EquipmentCard"
 import { useNavigate } from "react-router-dom"
 import { AppContext } from "../../context/AppWrapper"
 import { EquipmentRequestModal } from "../../components/modals/EquipmentRequestModal"
+import { EquipmentFilterBar } from "../../components/filterbars/EquipmentFilterBar"
+import { getLabs } from "../../data/labs"
 
 export const AllEquipment = () => {
   const navigate = useNavigate()
@@ -11,6 +13,15 @@ export const AllEquipment = () => {
   const [allEquipment, setAllEquipment] = useState([])
   const [showModal, setShowModal] = useState(false)
   const [equipment, setEquipment] = useState(0)
+  const [labs, setLabs] = useState([])
+
+  useEffect(() => {
+    getLabs().then((labData) => {
+      if (labData) {
+        setLabs(labData)
+      }
+    })
+  }, [])
 
   useEffect(() => {
     if (!showModal) {
@@ -32,9 +43,7 @@ export const AllEquipment = () => {
       <header className="page-header">
         <h2 className="page-heading mb-12">All Lab Equipment</h2>
         <div className="page-header-actions">
-          <div className="min-w-[28rem] bg-pink-100 rounded-lg">
-            Filter Bar (Stretch Goal)
-          </div>
+          <EquipmentFilterBar labs={labs} setEquipment={setAllEquipment} />
           {user.admin && (
             <button
               className="btn bg-pink-100"
