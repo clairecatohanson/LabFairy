@@ -1,7 +1,7 @@
 import { ModalLayout } from "../layouts/ModalLayout"
 import { Input } from "../form-elements/Input"
 import { useRef } from "react"
-import { updateTicket } from "../../data/equipmentmaintenance"
+import { createTicket, updateTicket } from "../../data/equipmentmaintenance"
 
 export const CompleteMaintenance = ({
   setShowModal,
@@ -11,12 +11,30 @@ export const CompleteMaintenance = ({
 }) => {
   const dateEl = useRef()
 
-  const completeMaintenance = async () => {
+  const completeAndScheduleMaintenance = async () => {
     const updatedTicket = {}
     updatedTicket[`date_${title.toLowerCase()}d`] = dateEl.current.value
 
-    await updateTicket(ticketId, updatedTicket)
+    const ticketResponse = await updateTicket(ticketId, updatedTicket)
+    const dateScheduled = ticketResponse.date_scheduled
+    if (!dateScheduled) {
+      await updateTicket(ticketId, { date_scheduled: dateEl.current.value })
+    }
 
+    const interval = ticketResponse.maintenance.days_interval
+    if (title === "Complete" && interval) {
+      const completedDateString = dateEl.current.value + "T00:00:00Z"
+      const completedDate = new Date(completedDateString)
+      completedDate.setDate(completedDate.getDate() + interval)
+      const nextDateNeeded = completedDate.toISOString().slice(0, 10)
+
+      const newTicket = {
+        equipment_id: ticketResponse.equipment.id,
+        maintenance_id: ticketResponse.maintenance.id,
+        date_needed: nextDateNeeded,
+      }
+      await createTicket(newTicket)
+    }
     setShowModal(false)
   }
 
@@ -35,7 +53,7 @@ export const CompleteMaintenance = ({
         </div>
       </div>
       <div className="flex space-x-4">
-        <button className="btn" onClick={completeMaintenance}>
+        <button className="btn" onClick={completeAndScheduleMaintenance}>
           {title} Maintenance
         </button>
         <button
