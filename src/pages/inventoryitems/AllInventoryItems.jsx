@@ -5,25 +5,25 @@ import { useNavigate, useParams } from "react-router-dom"
 import { getInventories } from "../../data/inventory"
 
 export const AllInventoryItems = () => {
-  const { id } = useParams()
+  const { inventoryId } = useParams()
   const navigate = useNavigate()
 
   const [inventoryItems, setInventoryItems] = useState([])
   const [inventory, setInventory] = useState({})
 
   useEffect(() => {
-    getInventoryItems(id).then((data) => {
+    getInventoryItems(inventoryId).then((data) => {
       if (data) {
         setInventoryItems(data)
       }
     })
 
-    getInventories({ inventoryId: id }).then((data) => {
+    getInventories({ inventoryId: inventoryId }).then((data) => {
       if (data) {
         setInventory(data)
       }
     })
-  }, [id])
+  }, [inventoryId])
 
   return (
     <div className="page-container">
