@@ -1,6 +1,9 @@
 import { useEffect, useRef, useState } from "react"
 import { useParams } from "react-router-dom"
-import { getInventoryItem } from "../../data/inventoryitems"
+import {
+  getInventoryItem,
+  updateInventoryItem,
+} from "../../data/inventoryitems"
 import { Input } from "../../components/form-elements/Input"
 import { createSupplyRequest } from "../../data/supplyrequest"
 
@@ -10,6 +13,7 @@ export const InventoryItemDetails = () => {
 
   const [inventoryItem, setInventoryItem] = useState({})
   const [restockStatus, setRestockStatus] = useState("")
+  const [depleted, setDepleted] = useState(false)
 
   useEffect(() => {
     getInventoryItem(itemId).then((data) => {
@@ -17,7 +21,23 @@ export const InventoryItemDetails = () => {
         setInventoryItem(data)
       }
     })
-  }, [itemId])
+  }, [itemId, depleted])
+
+  useEffect(() => {
+    if (inventoryItem.id) {
+      if (inventoryItem.depleted) {
+        setDepleted(true)
+      } else {
+        setDepleted(false)
+      }
+    }
+  }, [inventoryItem])
+
+  const markAsDepleted = async () => {
+    const itemObject = { depleted: true }
+    await updateInventoryItem(itemId, itemObject)
+    setDepleted(true)
+  }
 
   const requestRestock = async (e) => {
     e.preventDefault()
@@ -48,7 +68,13 @@ export const InventoryItemDetails = () => {
           <div>{inventoryItem.location?.name}</div>
         </div>
         <div>
-          <button className="btn">Mark As Depleted</button>
+          {!depleted ? (
+            <button className="btn" onClick={markAsDepleted}>
+              Mark As Depleted
+            </button>
+          ) : (
+            <div>Out of Stock</div>
+          )}
         </div>
       </section>
       <div className="centered mt-12">
