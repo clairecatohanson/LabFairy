@@ -35,11 +35,19 @@ export const AllMaintenance = () => {
           </button>
         </div>
       </header>
-      <section className="maintenance-cards max-w-4xl mx-auto space-y-4">
-        {maintenanceTickets.map((ticket) => (
-          <MaintenanceCard key={`ticket=${ticket.id}`} ticket={ticket} />
-        ))}
-      </section>
+      {maintenanceTickets.length ? (
+        <section className="maintenance-cards max-w-4xl mx-auto space-y-4">
+          {maintenanceTickets.map((ticket) => (
+            <MaintenanceCard key={`ticket=${ticket.id}`} ticket={ticket} />
+          ))}
+        </section>
+      ) : (
+        <section className="max-w-4xl mx-auto">
+          There are currently no pending or scheduled maintenance tickets for
+          your equipment.
+          <br></br> Use the filter bar to view past maintenance tickets.
+        </section>
+      )}
     </div>
   )
 }
