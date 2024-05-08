@@ -9,6 +9,7 @@ import { EquipmentDetails } from "../pages/equipment/EquipmentDetails"
 import { AllMaintenance } from "../pages/maintenanceTickets/AllMaintenance"
 import { Home } from "../pages/home/Home"
 import { AllInventoryItems } from "../pages/inventoryitems/AllInventoryItems"
+import { InventoryItemDetails } from "../pages/inventoryitems/InventoryItemDetails"
 
 export const ApplicationViews = () => {
   return (
@@ -33,7 +34,14 @@ export const ApplicationViews = () => {
           path="maintenance/:id/edit"
           element={<EditEquipmentMaintenance />}
         />
-        <Route path="inventories/:id" element={<AllInventoryItems />} />
+        <Route
+          path="inventories/:inventoryId"
+          element={<AllInventoryItems />}
+        />
+        <Route
+          path="inventories/:inventoryId/consumable/:itemId"
+          element={<InventoryItemDetails />}
+        />
       </Route>
     </Routes>
   )
