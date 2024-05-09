@@ -13,6 +13,9 @@ export const NavBar = () => {
       <div className="nav-link">
         <Link to="/maintenance">Maintenance</Link>
       </div>
+      <div className="nav-link">
+        <Link to="/inventories">Inventories</Link>
+      </div>
       <div className="nav-link hover:border-pink-900">
         <Link
           to="/login"

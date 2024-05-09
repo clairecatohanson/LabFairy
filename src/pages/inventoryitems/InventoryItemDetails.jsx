@@ -78,9 +78,11 @@ export const InventoryItemDetails = () => {
         </div>
       </section>
       <div className="centered mt-12">
-        <div className="bg-white p-4 rounded-xl shadow">
-          Status: {restockStatus}
-        </div>
+        {restockStatus ? (
+          <div className="bg-white p-4 rounded-xl shadow">{restockStatus}</div>
+        ) : (
+          <div className="p-6"></div>
+        )}
       </div>
       <form className="bg-white w-80 flex flex-col items-center space-y-4 my-4 py-4 rounded-xl shadow mx-auto">
         <Input
