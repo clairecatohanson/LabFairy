@@ -11,6 +11,9 @@ import { Home } from "../pages/home/Home"
 import { AllInventoryItems } from "../pages/inventoryitems/AllInventoryItems"
 import { InventoryItemDetails } from "../pages/inventoryitems/InventoryItemDetails"
 import { AllInventories } from "../pages/inventories/AllInventories"
+import { AllSupplyRequests } from "../pages/supplyrequests/AllSupplyRequests"
+import { OpenOrder } from "../pages/orders/OpenOrder"
+import { AllOrders } from "../pages/orders/AllOrders"
 
 export const ApplicationViews = () => {
   return (
@@ -41,6 +44,9 @@ export const ApplicationViews = () => {
           element={<AllInventoryItems />}
         />
         <Route path="consumables/:itemId" element={<InventoryItemDetails />} />
+        <Route path="supplyrequests" element={<AllSupplyRequests />} />
+        <Route path="orders" element={<AllOrders />} />
+        <Route path="orders/:id" element={<OpenOrder />} />
       </Route>
     </Routes>
   )

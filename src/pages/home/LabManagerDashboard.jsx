@@ -1,6 +1,9 @@
 import { useEffect, useState } from "react"
 import { getMaintenanceTickets } from "../../data/equipmentmaintenance"
 import { getEquipmentRequests } from "../../data/equipmentrequest"
+import { useNavigate } from "react-router-dom"
+import { getOrders } from "../../data/orders"
+import { getSupplyRequests } from "../../data/supplyrequest"
 
 export const LabManagerDashboard = ({
   setRequestId,
@@ -15,6 +18,31 @@ export const LabManagerDashboard = ({
   const [upcomingMaintenance, setUpcomingMaintenance] = useState([])
   const [pendingMaintenance, setPendingMaintenance] = useState([])
   const [equipmentRequests, setEquipmentRequests] = useState([])
+  const [openOrder, setOpenOrder] = useState({})
+  const [openSupplyRequests, setOpenSupplyRequests] = useState([])
+  const [itemsPendingReceipt, setItemsPendingReceipt] = useState([])
+
+  const navigate = useNavigate()
+
+  useEffect(() => {
+    getOrders({ query: "status=open" }).then((data) => {
+      if (data) {
+        setOpenOrder(data[0])
+      }
+    })
+
+    getSupplyRequests({ query: "status=requested&limit=3" }).then((data) => {
+      if (data) {
+        setOpenSupplyRequests(data)
+      }
+    })
+
+    getSupplyRequests({ query: "status=ordered&limit=3" }).then((data) => {
+      if (data) {
+        setItemsPendingReceipt(data)
+      }
+    })
+  }, [])
 
   useEffect(() => {
     if (showApproveModal == false)
@@ -54,12 +82,118 @@ export const LabManagerDashboard = ({
           Your Personal Dashboard
         </h3>
         {/* Dashboard Container */}
-        <div className="flex justify-center">
+        <div className="flex justify-center space-x-4">
+          {/* Left Panel */}
+          <section className="flex justify-center">
+            {/* Open Order */}
+            <div className="flex flex-col space-y-6 items-center ">
+              <div className="bg-bluegreen-100/30 rounded-xl p-4 w-full">
+                <h3 className="dashboard-heading">Current Open Order</h3>
+                {openOrder?.id ? (
+                  <div className="centered">
+                    <button
+                      className="btn"
+                      onClick={() => {
+                        navigate(`/orders/${openOrder.id}`)
+                      }}
+                    >
+                      View
+                    </button>
+                  </div>
+                ) : (
+                  <div> There is currently no open order</div>
+                )}
+              </div>
+              {/* Open Supply Requests */}
+              <div className="bg-bluegreen-100/30 rounded-xl p-4 w-full">
+                <h3 className="dashboard-heading">Pending Supply Requests</h3>
+                {openSupplyRequests.length ? (
+                  <div className="flex flex-col space-y-2 mb-6">
+                    {openSupplyRequests.map((request) => (
+                      <div
+                        className="p-2 bg-bluegreen-300 rounded w-80 shadow-lg"
+                        key={request.id}
+                      >
+                        <h4 className="font-bold">
+                          {request.consumable.name} -{" "}
+                          {request.researcher?.user.first_name}
+                        </h4>
+                        <div className="flex flex-row justify-between items-center">
+                          <div>
+                            <div>Date Requested: </div>
+                            <div>{request.date_requested.split("T")[0]}</div>
+                          </div>
+                          <div>
+                            <button
+                              className="btn"
+                              onClick={() => {
+                                navigate("/supplyrequests")
+                              }}
+                            >
+                              <i className="fa-solid fa-magnifying-glass-plus"></i>
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                ) : (
+                  <div>There are currently no pending supply requests</div>
+                )}
+              </div>
+              {/* Items Pending Receipt */}
+              <div className="bg-bluegreen-100/30 rounded-xl p-4 w-full">
+                <h3 className="dashboard-heading">Items Pending Receipt</h3>
+                {itemsPendingReceipt.length ? (
+                  <div className="flex flex-col space-y-2 mb-6">
+                    {itemsPendingReceipt.map((request) => (
+                      <div
+                        className="p-2 bg-bluegreen-300 rounded w-80 shadow-lg"
+                        key={request.id}
+                      >
+                        <h4 className="font-bold">
+                          {request.consumable.name} -{" "}
+                          {request.researcher?.user.first_name}
+                        </h4>
+                        <div className="flex flex-row justify-between items-center">
+                          <div>
+                            <div className="flex space-x-2">
+                              <div>Order Number: </div>
+                              <div>{request.order.id}</div>
+                            </div>
+                            <div className="flex space-x-2">
+                              <div>Date Ordered: </div>
+                              <div>
+                                {request.order.date_completed.split("T")[0]}
+                              </div>
+                            </div>
+                          </div>
+                          <div>
+                            <button
+                              className="btn"
+                              onClick={() => {
+                                navigate(`/orders/${request.order.id}`)
+                              }}
+                            >
+                              <i className="fa-solid fa-magnifying-glass-plus"></i>
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                ) : (
+                  <div>There are currently no items pending receipt</div>
+                )}
+              </div>
+            </div>
+          </section>
+
           {/* Center Panel */}
           <section className="flex justify-center">
             {/* Upcoming Maintenance */}
-            <div className="flex flex-col space-y-6 items-center bg-bluegreen-100/30 rounded-xl p-4">
-              <div>
+            <div className="flex flex-col space-y-6 items-center">
+              <div className="bg-bluegreen-100/30 rounded-xl p-4 w-full">
                 <h3 className="dashboard-heading">Upcoming Maintenance</h3>
                 {upcomingMaintenance.length ? (
                   <div className="flex flex-col space-y-2 mb-6">
@@ -97,7 +231,7 @@ export const LabManagerDashboard = ({
                 )}
               </div>
               {/* Pending Maintenance */}
-              <div>
+              <div className="bg-bluegreen-100/30 rounded-xl p-4 w-full">
                 <h3 className="dashboard-heading">Pending Maintenance</h3>
                 {pendingMaintenance.length ? (
                   <div className="flex flex-col space-y-2 mb-6">
@@ -139,8 +273,8 @@ export const LabManagerDashboard = ({
           {/* Right Panel */}
           <section>
             {/* Pending Equipment Requests */}
-            <div className="flex flex-col space-y-6 items-center bg-bluegreen-100/30 rounded-xl p-4">
-              <div>
+            <div className="flex flex-col space-y-6 items-center">
+              <div className="bg-bluegreen-100/30 rounded-xl p-4 w-full">
                 <h3 className="dashboard-heading">
                   Pending Equipment Requests
                 </h3>
