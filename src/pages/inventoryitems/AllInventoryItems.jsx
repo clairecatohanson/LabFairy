@@ -18,7 +18,7 @@ export const AllInventoryItems = () => {
       }
     })
 
-    getInventories({ inventoryId: inventoryId }).then((data) => {
+    getInventories({ inventory_id: inventoryId }).then((data) => {
       if (data) {
         setInventory(data)
       }
@@ -46,7 +46,7 @@ export const AllInventoryItems = () => {
                 key={item.id}
                 className="flex space-x-4"
                 onClick={() => {
-                  navigate(`consumable/${item.id}`)
+                  navigate(`/consumables/${item.id}`)
                 }}
               >
                 <td className="w-60">{item.consumable.name}</td>

@@ -76,7 +76,7 @@ export const EquipmentMaintenanceForm = ({
                 Schedule
               </button>
               <button className="btn" onClick={updateFunction}>
-                Cancel
+                Cancel Maintenance
               </button>
               <button
                 className="btn"
