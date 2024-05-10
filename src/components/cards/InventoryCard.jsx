@@ -9,7 +9,7 @@ export const InventoryCard = ({ inventory }) => {
       <div>{inventory.description}</div>
       <div>
         <button
-          className="btn"
+          className="btn border-pink-500 border-4 shadow bg-gray-200"
           onClick={() => {
             navigate(`${inventory.id}`)
           }}

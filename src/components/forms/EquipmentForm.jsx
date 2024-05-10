@@ -139,15 +139,24 @@ export const EquipmentForm = ({
         />
       </form>
       <div className="form-actions">
-        <button className="btn" onClick={submitFunction}>
+        <button
+          className="btn bg-bluegreen-500 text-gray-100 border-2 border-bluegreen-700"
+          onClick={submitFunction}
+        >
           {title === "Add New Equipment" ? "Create" : "Update"}
         </button>
         {title === "Add New Equipment" ? (
-          <button className="btn" onClick={cancelFunction}>
+          <button
+            className="btn bg-bluegreen-500 text-gray-100 border-2 border-bluegreen-700"
+            onClick={cancelFunction}
+          >
             Cancel
           </button>
         ) : (
-          <button className="btn" onClick={cancelFunction}>
+          <button
+            className="btn bg-bluegreen-500 text-gray-100 border-2 border-bluegreen-700"
+            onClick={cancelFunction}
+          >
             Cancel
           </button>
         )}

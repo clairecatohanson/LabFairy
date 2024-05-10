@@ -3,6 +3,7 @@ import { getOrders, updateOrder } from "../../data/orders"
 import { useNavigate, useParams } from "react-router-dom"
 import { AppContext } from "../../context/AppWrapper"
 import { SupplyRequestList } from "../../components/SupplyRequestList"
+import { updateSupplyRequest } from "../../data/supplyrequest"
 
 export const OpenOrder = () => {
   const { id } = useParams()
@@ -11,6 +12,7 @@ export const OpenOrder = () => {
 
   const [order, setOrder] = useState({})
   const [orderItems, setOrderItems] = useState([])
+  const [clickCounter, setClickCounter] = useState(0)
 
   useEffect(() => {
     if (id) {
@@ -21,7 +23,7 @@ export const OpenOrder = () => {
         }
       })
     }
-  }, [id])
+  }, [id, clickCounter])
 
   if (!user.admin) {
     return (
@@ -50,6 +52,13 @@ export const OpenOrder = () => {
     navigate("/orders")
   }
 
+  const receiveItem = async (request) => {
+    const requestId = request.id
+    const updatedRequest = { date_received: new Date() }
+    await updateSupplyRequest(requestId, updatedRequest)
+    setClickCounter(clickCounter + 1)
+  }
+
   if (!order.id) {
     return (
       <div className="page-container">
@@ -67,12 +76,16 @@ export const OpenOrder = () => {
     <div className="page-container">
       <SupplyRequestList
         buttonClasses={buttonClasses()}
+        clickFunction={receiveItem}
         supplyRequests={orderItems}
         title={titles()}
       />
       {!order.date_completed && (
         <div className="centered mt-12">
-          <button className="btn" onClick={completeOrder}>
+          <button
+            className="btn bg-bluegreen-500 text-gray-100 border-2 border-bluegreen-700"
+            onClick={completeOrder}
+          >
             Complete Order
           </button>
         </div>

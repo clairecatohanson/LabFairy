@@ -16,7 +16,7 @@
 }
 
 .page-header {
-  @apply bg-pink-500  w-[98%] mx-auto rounded-lg py-6 px-3 mb-12;
+  @apply bg-pink-500  w-[98%] mx-auto rounded-lg py-6 px-3 mt-4 mb-12;
 }
 
 .page-heading {
@@ -35,7 +35,7 @@
 }
 
 .btn {
-  @apply border px-4 py-2 rounded;
+  @apply border px-4 py-2 rounded hover:-translate-y-0.5 duration-200;
 }
 /* -------------------------------------------------------- */
 
