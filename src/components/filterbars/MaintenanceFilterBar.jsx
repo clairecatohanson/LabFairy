@@ -101,10 +101,16 @@ export const MaintenanceFilterBar = ({ setTickets }) => {
         </div>
       </div>
       <div className="mr-2 flex flex-col space-y-2 items-end">
-        <button className="btn" onClick={filterTickets}>
+        <button
+          className="btn bg-purple-500 border-purple-700 shadow-lg text-gray-100"
+          onClick={filterTickets}
+        >
           Filter
         </button>
-        <button className="btn" onClick={clearFilters}>
+        <button
+          className="btn bg-purple-300 border-purple-700 shadow-lg text-purple-700"
+          onClick={clearFilters}
+        >
           Clear
         </button>
       </div>

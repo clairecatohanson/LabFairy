@@ -21,7 +21,7 @@ export const OrderCard = ({ order }) => {
       </div>
       <div>
         <button
-          className="btn"
+          className="btn border-pink-500 border-4 shadow bg-gray-200"
           onClick={() => {
             navigate(`${order.id}`)
           }}

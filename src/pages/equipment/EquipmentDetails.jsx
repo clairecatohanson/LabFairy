@@ -92,7 +92,7 @@ export const EquipmentDetails = () => {
             <div className="flex flex-col space-y-4 items-center">
               <div>
                 <button
-                  className="btn"
+                  className="btn border-pink-500 border-4 shadow bg-gray-200"
                   onClick={() => {
                     navigate("/new-maintenance")
                   }}
@@ -103,7 +103,7 @@ export const EquipmentDetails = () => {
               {user.admin && (
                 <div>
                   <button
-                    className="btn"
+                    className="btn border-pink-500 border-4 shadow bg-gray-200"
                     onClick={() => {
                       navigate("edit")
                     }}
@@ -116,19 +116,28 @@ export const EquipmentDetails = () => {
                 <div className="flex space-x-4">
                   {archived ? (
                     <div>
-                      <button className="btn" onClick={editArchived}>
+                      <button
+                        className="btn border-pink-500 border-4 shadow bg-gray-200"
+                        onClick={editArchived}
+                      >
                         Restore
                       </button>
                     </div>
                   ) : (
                     <div>
-                      <button className="btn" onClick={editArchived}>
+                      <button
+                        className="btn border-pink-500 border-4 shadow bg-gray-200"
+                        onClick={editArchived}
+                      >
                         Archive
                       </button>
                     </div>
                   )}
                   <div>
-                    <button className="btn" onClick={destroyClick}>
+                    <button
+                      className="btn border-pink-500 border-4 shadow bg-gray-200"
+                      onClick={destroyClick}
+                    >
                       Destroy
                     </button>
                   </div>
@@ -152,7 +161,7 @@ export const EquipmentDetails = () => {
                 {user.admin && (
                   <div className="centered">
                     <button
-                      className="btn"
+                      className="btn border-pink-500 border-4 shadow bg-gray-200"
                       onClick={() => {
                         navigate(`/equipment/${parseInt(id)}/edit`)
                       }}

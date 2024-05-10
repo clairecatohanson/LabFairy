@@ -19,25 +19,31 @@ export const SupplyRequestList = ({
       </header>
       <section className="w-4/5 mx-auto">
         {supplyRequests.length ? (
-          <ul className=" flex-col space-y-1 items-center max-w-4xl mx-auto">
-            <li className="flex flex-nowrap font-bold p-1">
+          <ul className=" flex-col space-y-1 items-end max-w-4xl mx-auto">
+            <li className="flex flex-nowrap items-center font-bold p-1">
               <div className="w-64">Item</div>
               <div className="w-36">Vendor</div>
-              <div className="w-24">Price (each)</div>
+              <div className="w-28">Price (each)</div>
               <div className="w-24">Quantity</div>
               <div className="w-48">Requested By</div>
               <div className="w-36">Date Requested</div>
               {title === "Open Supply Requests" ? (
                 <div
-                  className={`w-24 text-center text-bluegreen-600 bg-bluegreen-100 rounded p-1 ${buttonClasses}`}
+                  className={`w-24 text-center text-bluegreen-600 border rounded border-bluegreen-600 ${buttonClasses}`}
                 >
-                  {user.admin && "Add to Cart"}
+                  {user.admin && (
+                    <span>
+                      Add<br></br>to Cart<br></br>
+                      <i className="fa-solid fa-arrow-down"></i>
+                    </span>
+                  )}
                 </div>
               ) : (
                 <div
-                  className={`w-24 text-center text-bluegreen-600 bg-bluegreen-100 rounded ${buttonClasses}`}
+                  className={`w-24 text-center text-bluegreen-600 border rounded border-bluegreen-600 ${buttonClasses}`}
                 >
-                  Mark Received
+                  Mark<br></br>Received<br></br>
+                  <i className="fa-solid fa-arrow-down"></i>
                 </div>
               )}
             </li>
@@ -48,7 +54,7 @@ export const SupplyRequestList = ({
               >
                 <div className="w-64">{request.consumable.name}</div>
                 <div className="w-36">{request.consumable.vendor}</div>
-                <div className="w-24">${request.consumable.price}</div>
+                <div className="w-28">${request.consumable.price}</div>
                 <div className="w-24">{request.quantity}</div>
                 <div className="w-48">
                   {request.researcher?.user.first_name
@@ -64,7 +70,7 @@ export const SupplyRequestList = ({
                   <div className={`w-24 centered`}>
                     {user.admin && (
                       <button
-                        className={`btn ${buttonClasses}`}
+                        className={`btn border-pink-500 border-4 shadow bg-pink-200 ${buttonClasses}`}
                         onClick={() => {
                           clickFunction(request)
                         }}
@@ -74,15 +80,19 @@ export const SupplyRequestList = ({
                     )}
                   </div>
                 ) : (
-                  <div className={`w-24 centered`}>
-                    <button
-                      className={`btn ${buttonClasses}`}
-                      onClick={() => {
-                        clickFunction(request)
-                      }}
-                    >
-                      <i className="fa-solid fa-circle-check"></i>
-                    </button>
+                  <div className="w-24 centered">
+                    {request.date_received ? (
+                      <span>received</span>
+                    ) : (
+                      <button
+                        className={`btn border-pink-500 border-4 shadow bg-pink-200 ${buttonClasses}`}
+                        onClick={() => {
+                          clickFunction(request)
+                        }}
+                      >
+                        <i className="fa-solid fa-circle-check"></i>
+                      </button>
+                    )}
                   </div>
                 )}
               </li>

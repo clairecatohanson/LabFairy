@@ -26,7 +26,7 @@ export const AllMaintenance = () => {
         <div className="page-header-actions">
           <MaintenanceFilterBar setTickets={setMaintenanceTickets} />
           <button
-            className="btn bg-pink-100"
+            className="btn bg-pink-100 border-pink-700 shadow-lg"
             onClick={() => {
               navigate("/new-maintenance")
             }}

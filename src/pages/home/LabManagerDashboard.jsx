@@ -92,7 +92,7 @@ export const LabManagerDashboard = ({
                 {openOrder?.id ? (
                   <div className="centered">
                     <button
-                      className="btn"
+                      className="btn bg-white border-bluegreen-600 shadow"
                       onClick={() => {
                         navigate(`/orders/${openOrder.id}`)
                       }}
@@ -121,11 +121,11 @@ export const LabManagerDashboard = ({
                         <div className="flex flex-row justify-between items-center">
                           <div>
                             <div>Date Requested: </div>
-                            <div>{request.date_requested.split("T")[0]}</div>
+                            <div>{request.date_requested?.split("T")[0]}</div>
                           </div>
                           <div>
                             <button
-                              className="btn"
+                              className="btn bg-white border-bluegreen-600 shadow"
                               onClick={() => {
                                 navigate("/supplyrequests")
                               }}
@@ -164,13 +164,13 @@ export const LabManagerDashboard = ({
                             <div className="flex space-x-2">
                               <div>Date Ordered: </div>
                               <div>
-                                {request.order.date_completed.split("T")[0]}
+                                {request.order.date_completed?.split("T")[0]}
                               </div>
                             </div>
                           </div>
                           <div>
                             <button
-                              className="btn"
+                              className="btn bg-white border-bluegreen-600 shadow"
                               onClick={() => {
                                 navigate(`/orders/${request.order.id}`)
                               }}
@@ -212,7 +212,7 @@ export const LabManagerDashboard = ({
                           </div>
                           <div>
                             <button
-                              className="btn"
+                              className="btn bg-white border-bluegreen-600 shadow "
                               onClick={() => {
                                 const id = ticket.id
                                 setShowCompleteModal(true)
@@ -250,7 +250,7 @@ export const LabManagerDashboard = ({
                           </div>
                           <div>
                             <button
-                              className="btn"
+                              className="btn bg-white border-bluegreen-600 shadow"
                               onClick={() => {
                                 const id = ticket.id
                                 setShowScheduleModal(true)
@@ -297,7 +297,7 @@ export const LabManagerDashboard = ({
                           </div>
                           <div>
                             <button
-                              className="btn"
+                              className="btn bg-white border-bluegreen-600 shadow"
                               onClick={() => {
                                 const id = request.id
                                 setShowApproveModal(true)

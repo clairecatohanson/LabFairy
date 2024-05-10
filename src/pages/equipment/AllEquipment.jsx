@@ -46,7 +46,7 @@ export const AllEquipment = () => {
           <EquipmentFilterBar labs={labs} setEquipment={setAllEquipment} />
           {user.admin && (
             <button
-              className="btn bg-pink-100"
+              className="btn bg-pink-100 border-pink-700 shadow-lg"
               onClick={() => {
                 navigate("/new-equipment")
               }}

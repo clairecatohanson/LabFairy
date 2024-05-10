@@ -76,7 +76,7 @@ export const EquipmentCard = ({
       <>
         {userHasAccess ? (
           <button
-            className="btn border-pink-500 bg-gray-200"
+            className="btn border-pink-500 border-4 shadow bg-gray-200"
             onClick={() => {
               navigate(`/equipment/${equipment.id}`)
             }}
