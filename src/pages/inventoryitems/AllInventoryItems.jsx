@@ -44,7 +44,7 @@ export const AllInventoryItems = () => {
             {inventoryItems.map((item) => (
               <tr
                 key={item.id}
-                className="flex space-x-4"
+                className="flex space-x-4 hover:outline hover:outline-bluegreen-500 rounded hover:outline-2 hover:bg-bluegreen-100/20 hover:cursor-pointer"
                 onClick={() => {
                   navigate(`/consumables/${item.id}`)
                 }}
