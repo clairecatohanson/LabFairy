@@ -18,7 +18,7 @@ export const AllOrders = () => {
       <header className="page-header">
         <h2 className="page-heading">Orders</h2>
       </header>
-      <section className="flex flex-col space-y-4 items-center md:flex-row w-11/12 mx-auto md:justify-center md:space-y-0 md:space-x-8">
+      <section className="flex flex-col space-y-4 items-center md:flex-row md:flex-wrap w-11/12 mx-auto md:justify-center md:space-y-0">
         {orders.map((order) => (
           <OrderCard key={order.id} order={order} />
         ))}

@@ -61,7 +61,6 @@ export const AllSupplyRequests = () => {
 
   const receiveItem = async (request) => {
     const requestId = request.id
-    console.log(requestId)
     const updatedRequest = { date_received: new Date() }
     await updateSupplyRequest(requestId, updatedRequest)
     setClickCounter(clickCounter + 1)

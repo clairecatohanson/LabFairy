@@ -30,6 +30,51 @@ export const InventoryItemDetails = () => {
       } else {
         setDepleted(false)
       }
+
+      if (inventoryItem.consumable.supply_requests.length) {
+        const requestedInventoryItem =
+          inventoryItem.consumable.supply_requests.find(
+            (request) =>
+              (!request.order ||
+                (request.order.id && !request.order.date_completed)) &&
+              request.inventory.id === inventoryItem.inventory.id
+          )
+        const orderedInventoryItem =
+          inventoryItem.consumable.supply_requests.find(
+            (request) =>
+              request.order?.id &&
+              request.order?.date_completed &&
+              !request.date_received &&
+              request.inventory.id === inventoryItem.inventory.id
+          )
+
+        const receivedInventoryItems =
+          inventoryItem.consumable.supply_requests.filter(
+            (request) =>
+              request.order?.id &&
+              request.order?.date_completed &&
+              request.date_received &&
+              request.inventory.id === inventoryItem.inventory.id
+          )
+
+        if (receivedInventoryItems.length) {
+          const sortedReceivedItems = receivedInventoryItems.sort(
+            (a, b) => b.date_received - a.date_received
+          )
+          const latestReceived = sortedReceivedItems[0]
+          setRestockStatus(
+            `Last restock date: ${latestReceived.date_received.split("T")[0]}`
+          )
+        }
+        if (requestedInventoryItem) {
+          setRestockStatus("Restock requested. Awaiting order completion.")
+        }
+        if (orderedInventoryItem) {
+          setRestockStatus(
+            "Restock requested, and item has been ordered. Awaiting receipt."
+          )
+        }
+      }
     }
   }, [inventoryItem])
 
@@ -45,6 +90,7 @@ export const InventoryItemDetails = () => {
     const newRequest = {
       consumable_id: inventoryItem.consumable.id,
       quantity: quantityEl.current.value,
+      inventory_id: inventoryItem.inventory.id,
     }
 
     await createSupplyRequest(newRequest)
