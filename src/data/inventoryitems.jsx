@@ -5,8 +5,11 @@ import {
   putOptions,
 } from "./fetcher"
 
-export const getInventoryItems = async (inventory_id) => {
-  const resource = `inventoryconsumables?inventory_id=${inventory_id}`
+export const getInventoryItems = async ({ inventory_id, query } = {}) => {
+  let resource = `inventoryconsumables?inventory_id=${inventory_id}`
+  if (query) {
+    resource += `&${query}`
+  }
   return await fetchWithResponse(resource, getOptions())
 }
 
