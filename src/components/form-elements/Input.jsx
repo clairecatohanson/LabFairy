@@ -5,6 +5,7 @@ export const Input = ({
   id,
   label = undefined,
   name = undefined,
+  onKeyPressFunction = undefined,
   placeholder = "",
   refEl = undefined,
   type,
@@ -44,6 +45,7 @@ export const Input = ({
             className={`form-element ${width} ${addedClasses}`}
             type={type}
             name={name}
+            onKeyDown={onKeyPressFunction}
             placeholder={placeholder}
             ref={refEl}
           />
