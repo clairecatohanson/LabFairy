@@ -19,6 +19,8 @@ export const Login = () => {
     if (response.valid) {
       localStorage.setItem("fairy_auth", JSON.stringify(response))
       navigate("/")
+    } else {
+      window.alert("Invalid credentials.")
     }
   }
 
