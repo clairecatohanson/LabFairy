@@ -50,6 +50,12 @@ export const EquipmentFilterBar = ({ labs, setEquipment }) => {
     })
   }
 
+  const handleEnter = (event) => {
+    if (event.key === "Enter") {
+      filterEquipment()
+    }
+  }
+
   return (
     <div className="min-w-[28rem] bg-pink-100 rounded-lg flex flex-row justify-between items-end py-1">
       <div className="min-w-[20rem] flex flex-col space-y-2">
@@ -73,6 +79,7 @@ export const EquipmentFilterBar = ({ labs, setEquipment }) => {
           <i className="fa-solid fa-magnifying-glass"></i>
           <Input
             id="search"
+            onKeyPressFunction={handleEnter}
             placeholder="Equipment name"
             refEl={nameEl}
             type="text"

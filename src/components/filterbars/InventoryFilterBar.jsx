@@ -4,12 +4,14 @@ import { Input } from "../form-elements/Input"
 import { getInventoryItems } from "../../data/inventoryitems"
 
 export const InventoryFilterBar = ({ inventoryId, setInventoryItems }) => {
-  const statusEl = useRef()
-  const nameEl = useRef()
+  const statusEl = useRef(null)
+  const nameEl = useRef(null)
+  const buttonRef = useRef(null)
 
   const statusDropdown = [
-    { id: 1, name: "In Stock" },
-    { id: 2, name: "Out of Stock" },
+    { id: 1, name: "Show All" },
+    { id: 2, name: "In Stock" },
+    { id: 3, name: "Out of Stock" },
   ]
 
   const filterItems = () => {
@@ -49,6 +51,12 @@ export const InventoryFilterBar = ({ inventoryId, setInventoryItems }) => {
     })
   }
 
+  const handleEnter = (event) => {
+    if (event.key === "Enter") {
+      filterItems()
+    }
+  }
+
   return (
     <div className="min-w-[28rem] bg-pink-100 rounded-lg flex flex-row justify-between items-end py-1">
       <div className="min-w-[20rem] flex flex-col space-y-2">
@@ -65,6 +73,7 @@ export const InventoryFilterBar = ({ inventoryId, setInventoryItems }) => {
           <i className="fa-solid fa-magnifying-glass"></i>
           <Input
             id="search"
+            onKeyPressFunction={handleEnter}
             placeholder="Item name"
             refEl={nameEl}
             type="text"
@@ -82,6 +91,7 @@ export const InventoryFilterBar = ({ inventoryId, setInventoryItems }) => {
         <button
           className="btn bg-purple-300 border-purple-700 shadow-lg text-purple-700"
           onClick={clearFilters}
+          ref={buttonRef}
         >
           Clear
         </button>

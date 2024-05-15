@@ -7,6 +7,12 @@ export const LoginForm = ({
   submitFunction,
   title,
 }) => {
+  const handleEnter = (event) => {
+    if (event.key === "Enter") {
+      submitFunction()
+    }
+  }
+
   return (
     <FormLayout addedClasses={addedClasses} title={title}>
       <form className="form" ref={formEl}>
@@ -21,6 +27,7 @@ export const LoginForm = ({
           addedClasses="text-center"
           id="password"
           label="Password"
+          onKeyPressFunction={handleEnter}
           type="password"
           width="w-96"
         />
