@@ -14,10 +14,12 @@ import { AllInventories } from "../pages/inventories/AllInventories"
 import { AllSupplyRequests } from "../pages/supplyrequests/AllSupplyRequests"
 import { OpenOrder } from "../pages/orders/OpenOrder"
 import { AllOrders } from "../pages/orders/AllOrders"
+import { SelectLab } from "../pages/SelectLab"
 
 export const ApplicationViews = () => {
   return (
     <Routes>
+      <Route path="/register-to-lab/:id" element={<SelectLab />} />
       <Route
         path="/"
         element={
