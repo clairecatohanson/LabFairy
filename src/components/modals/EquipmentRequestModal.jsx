@@ -16,9 +16,10 @@ export const EquipmentRequestModal = ({
       training_date: dateEl.current.value,
     }
 
-    await createAccessRequest(equipmentRequest)
-
-    setShowModal(false)
+    const requestResponse = await createAccessRequest(equipmentRequest)
+    if (requestResponse) {
+      setShowModal(false)
+    }
   }
 
   if (!showModal) {

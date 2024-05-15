@@ -93,8 +93,10 @@ export const InventoryItemDetails = () => {
       inventory_id: inventoryItem.inventory.id,
     }
 
-    await createSupplyRequest(newRequest)
-    setRestockStatus("Restock requested. Awaiting order")
+    const requestResponse = await createSupplyRequest(newRequest)
+    if (requestResponse) {
+      setRestockStatus("Restock requested. Awaiting order completion")
+    }
     quantityEl.current.value = ""
   }
 

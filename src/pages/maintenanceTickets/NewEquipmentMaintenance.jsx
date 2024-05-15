@@ -22,8 +22,10 @@ export const NewEquipmentMaintenance = () => {
       newTicket.date_scheduled = dateScheduled.value
     }
 
-    await createTicket(newTicket)
-    navigate("/maintenance")
+    const ticketResponse = await createTicket(newTicket)
+    if (ticketResponse) {
+      navigate("/maintenance")
+    }
   }
 
   return (

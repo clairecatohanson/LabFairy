@@ -17,10 +17,19 @@ const checkErrorJson = async (res) => {
 
 const catchError = (err) => {
   if (err.message === "401") {
+    window.location.href = "/login"
+  }
+  if (err.message === "400" || err.message === "404") {
+    window.alert("Bad request. Please check the data submitted and try again.")
+  }
+  if (err.message === "403") {
+    window.alert("Error: You are not authorized to perform this action.")
     window.location.href = "/"
   }
-  if (err.message === "404") {
-    throw Error(err.message)
+  if (err.message === "409") {
+    window.alert(
+      "Username is unavailable. Please enter another username and try again."
+    )
   }
 }
 
