@@ -1,8 +1,8 @@
 import { useNavigate } from "react-router-dom"
-import { Input } from "../form-elements/Input"
 import { FormLayout } from "../layouts/FormLayout"
+import { Input } from "../form-elements/Input"
 
-export const LoginForm = ({
+export const RegisterForm = ({
   addedClasses = undefined,
   formEl,
   submitFunction,
@@ -10,15 +10,30 @@ export const LoginForm = ({
 }) => {
   const navigate = useNavigate()
 
-  const handleEnter = (event) => {
-    if (event.key === "Enter") {
-      submitFunction()
-    }
-  }
-
   return (
     <FormLayout addedClasses={addedClasses} title={title}>
       <form className="form" ref={formEl}>
+        <Input
+          addedClasses="text-center"
+          id="firstName"
+          label="First Name"
+          type="text"
+          width="w-96"
+        />
+        <Input
+          addedClasses="text-center"
+          id="lastName"
+          label="Last Name"
+          type="text"
+          width="w-96"
+        />
+        <Input
+          addedClasses="text-center"
+          id="email"
+          label="Email"
+          type="email"
+          width="w-96"
+        />
         <Input
           addedClasses="text-center"
           id="username"
@@ -30,7 +45,6 @@ export const LoginForm = ({
           addedClasses="text-center"
           id="password"
           label="Password"
-          onKeyPressFunction={handleEnter}
           type="password"
           width="w-96"
         />
@@ -40,15 +54,15 @@ export const LoginForm = ({
           className="btn bg-bluegreen-500 text-gray-100 border-2 border-bluegreen-700"
           onClick={submitFunction}
         >
-          Login
+          Register
         </button>
         <button
-          className="btn bg-gray-100 text-bluegreen-500 border-2 border-bluegreen-700"
+          className="btn bg-bluegreen-500 text-gray-100 border-2 border-bluegreen-700"
           onClick={() => {
-            navigate("/register")
+            navigate("/login")
           }}
         >
-          Register
+          Back to Login
         </button>
       </div>
     </FormLayout>

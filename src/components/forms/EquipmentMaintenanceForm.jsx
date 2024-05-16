@@ -12,6 +12,7 @@ export const EquipmentMaintenanceForm = ({
   formEl,
   heading,
   id = undefined,
+  setShowModal,
   staticJSX = undefined,
   submitFunction,
   title,
@@ -63,35 +64,61 @@ export const EquipmentMaintenanceForm = ({
           <Input id="dateScheduled" label="Date Scheduled" type="date" />
         )}
       </form>
-      <div className="form-actions">
-        {!id ? (
-          <button className="btn" onClick={submitFunction}>
-            {user.admin ? "Schedule" : "Request"}
-          </button>
-        ) : (
-          <button className="btn" onClick={submitFunction}>
-            Update
-          </button>
-        )}
-        <button
-          className="btn"
-          onClick={() => {
-            navigate("/maintenance")
-          }}
-        >
-          Go Back
-        </button>
-      </div>
-      {id && (
+      <div className="flex flex-col space-y-4 items-center">
         <div className="form-actions">
-          <button className="btn" onClick={updateFunction}>
-            Cancel Maintenance
-          </button>
-          <button className="btn" onClick={deleteFunction}>
-            Cancel and Delete
+          {!id ? (
+            <button
+              className="btn bg-bluegreen-500 text-gray-100 border-2 border-bluegreen-700"
+              onClick={submitFunction}
+            >
+              {user.admin ? "Schedule" : "Request"}
+            </button>
+          ) : (
+            <>
+              <button
+                className="btn bg-bluegreen-500 text-gray-100 border-2 border-bluegreen-700"
+                onClick={submitFunction}
+              >
+                Schedule
+              </button>
+              <button
+                className="btn bg-bluegreen-500 text-gray-100 border-2 border-bluegreen-700"
+                onClick={updateFunction}
+              >
+                Cancel Maintenance
+              </button>
+              <button
+                className="btn bg-bluegreen-500 text-gray-100 border-2 border-bluegreen-700"
+                onClick={() => {
+                  setShowModal(true)
+                }}
+              >
+                Complete
+              </button>
+            </>
+          )}
+        </div>
+        {id && (
+          <div className="form-actions">
+            <button
+              className="btn border-pink-500 border-4 shadow bg-gray-200"
+              onClick={deleteFunction}
+            >
+              Cancel and Delete
+            </button>
+          </div>
+        )}
+        <div className="form-actions">
+          <button
+            className="btn border-pink-500 border-4 shadow bg-gray-200"
+            onClick={() => {
+              navigate("/maintenance")
+            }}
+          >
+            Go Back
           </button>
         </div>
-      )}
+      </div>
     </FormLayout>
   )
 }

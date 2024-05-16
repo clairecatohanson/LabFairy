@@ -67,7 +67,7 @@ export const MaintenanceCard = ({ ticket }) => {
       <div className="maintenance-actions">
         {user.admin & !ticket.date_completed ? (
           <button
-            className="btn border-pink-500 bg-gray-200"
+            className="btn border-pink-500 border-4 shadow bg-gray-200"
             onClick={() => {
               navigate(`/maintenance/${ticket.id}/edit`)
             }}

@@ -2,7 +2,13 @@ import { useEffect, useState } from "react"
 import { CardLayout } from "../layouts/CardLayout"
 import { useNavigate } from "react-router-dom"
 
-export const EquipmentCard = ({ equipment, userHasAccess }) => {
+export const EquipmentCard = ({
+  equipment,
+  setEquipment,
+  setShowModal,
+  userHasAccess,
+  userRequestedAccess,
+}) => {
   const navigate = useNavigate()
   const [tag, setTag] = useState("")
   const [tagColor, setTagColor] = useState("")
@@ -18,6 +24,28 @@ export const EquipmentCard = ({ equipment, userHasAccess }) => {
       }
     }
   }, [equipment])
+
+  const accessRequestJSX = () => {
+    if (userRequestedAccess) {
+      return (
+        <div className="italic text-center text-gray-600">
+          Pending<br></br>Approval
+        </div>
+      )
+    } else {
+      return (
+        <button
+          className="btn border-purple-500 bg-purple-400"
+          onClick={() => {
+            setShowModal(true)
+            setEquipment(equipment)
+          }}
+        >
+          Request<br></br>Access
+        </button>
+      )
+    }
+  }
 
   return (
     <CardLayout
@@ -46,15 +74,17 @@ export const EquipmentCard = ({ equipment, userHasAccess }) => {
         </div>
       </>
       <>
-        {userHasAccess && (
+        {userHasAccess ? (
           <button
-            className="btn border-pink-500 bg-gray-200"
+            className="btn border-pink-500 border-4 shadow bg-gray-200"
             onClick={() => {
               navigate(`/equipment/${equipment.id}`)
             }}
           >
             Details
           </button>
+        ) : (
+          accessRequestJSX()
         )}
       </>
     </CardLayout>

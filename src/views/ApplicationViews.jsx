@@ -7,11 +7,19 @@ import { EditEquipmentMaintenance } from "../pages/maintenanceTickets/EditEquipm
 import { AllEquipment } from "../pages/equipment/AllEquipment"
 import { EquipmentDetails } from "../pages/equipment/EquipmentDetails"
 import { AllMaintenance } from "../pages/maintenanceTickets/AllMaintenance"
-import { Home } from "../pages/Home"
+import { Home } from "../pages/home/Home"
+import { AllInventoryItems } from "../pages/inventoryitems/AllInventoryItems"
+import { InventoryItemDetails } from "../pages/inventoryitems/InventoryItemDetails"
+import { AllInventories } from "../pages/inventories/AllInventories"
+import { AllSupplyRequests } from "../pages/supplyrequests/AllSupplyRequests"
+import { OpenOrder } from "../pages/orders/OpenOrder"
+import { AllOrders } from "../pages/orders/AllOrders"
+import { SelectLab } from "../pages/SelectLab"
 
 export const ApplicationViews = () => {
   return (
     <Routes>
+      <Route path="/register-to-lab/:id" element={<SelectLab />} />
       <Route
         path="/"
         element={
@@ -32,6 +40,15 @@ export const ApplicationViews = () => {
           path="maintenance/:id/edit"
           element={<EditEquipmentMaintenance />}
         />
+        <Route path="inventories" element={<AllInventories />} />
+        <Route
+          path="inventories/:inventoryId"
+          element={<AllInventoryItems />}
+        />
+        <Route path="consumables/:itemId" element={<InventoryItemDetails />} />
+        <Route path="supplyrequests" element={<AllSupplyRequests />} />
+        <Route path="orders" element={<AllOrders />} />
+        <Route path="orders/:id" element={<OpenOrder />} />
       </Route>
     </Routes>
   )
