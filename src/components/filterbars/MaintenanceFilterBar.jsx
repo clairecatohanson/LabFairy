@@ -82,21 +82,20 @@ export const MaintenanceFilterBar = ({ setTickets }) => {
             width="w-40"
           />
           <Select
-            id="equipment"
-            defaultOption="Select equipment"
-            dropdownOptions={equipment}
-            refEl={equipmentEl}
-            width="w-40"
-          />
-        </div>
-        <div className="ml-2 flex flex-row flex-nowrap space-x-1 items-center">
-          <i className="fa-solid fa-magnifying-glass"></i>
-          <Select
             id="maintenanceType"
             defaultOption="Select type"
             dropdownOptions={maintenanceTypes}
             refEl={maintenanceTypeEl}
             width="w-40"
+          />
+        </div>
+        <div className="ml-2 flex flex-row flex-nowrap space-x-1 items-center">
+          <Select
+            id="equipment"
+            defaultOption="Select equipment"
+            dropdownOptions={equipment}
+            refEl={equipmentEl}
+            width="w-[21rem]"
           />
         </div>
       </div>
