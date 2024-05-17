@@ -7,6 +7,7 @@ import {
 import { AppContext } from "../../context/AppWrapper"
 import { createOrder, getOrders } from "../../data/orders"
 import { SupplyRequestList } from "../../components/SupplyRequestList"
+import { createInventoryItem } from "../../data/inventoryitems"
 
 export const AllSupplyRequests = () => {
   const { user } = useContext(AppContext)
@@ -63,6 +64,11 @@ export const AllSupplyRequests = () => {
     const requestId = request.id
     const updatedRequest = { date_received: new Date() }
     await updateSupplyRequest(requestId, updatedRequest)
+    const newItem = {
+      inventory_id: request.inventory,
+      consumable_id: request.consumable.id,
+    }
+    await createInventoryItem(newItem)
     setClickCounter(clickCounter + 1)
   }
 
