@@ -2,7 +2,7 @@
 
 Welcome to Lab Fairy! This application provides a platform for research lab managers to administer shared lab equipment access, plan and schedule equipment maintenance, and track inventory supply requests. 
 
-This app was built with React/JavaScript and styled with tailwindcss. The API was built with Django/Python. 
+This UI of this app was built with React and styled with tailwindcss. The API was built with Django and Python. 
 
 ## Deployed Application
 
