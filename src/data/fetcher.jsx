@@ -1,4 +1,4 @@
-const apiURL = "http://localhost:8000"
+const apiURL = "https://lab-fairy-api-5wbtn.ondigitalocean.app"
 
 const checkError = (res) => {
   if (!res.ok) {
