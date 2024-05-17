@@ -2,6 +2,7 @@ import {
   fetchWithResponse,
   fetchWithoutResponse,
   getOptions,
+  postOptions,
   putOptions,
 } from "./fetcher"
 
@@ -25,4 +26,8 @@ export const updateInventoryItem = async (itemId, itemObject) => {
     `inventoryconsumables/${itemId}`,
     putOptions(itemObject)
   )
+}
+
+export const createInventoryItem = async (newItem) => {
+  return await fetchWithResponse("inventoryconsumables", postOptions(newItem))
 }
