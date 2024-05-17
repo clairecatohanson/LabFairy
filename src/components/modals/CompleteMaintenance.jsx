@@ -1,7 +1,7 @@
 import { ModalLayout } from "../layouts/ModalLayout"
 import { Input } from "../form-elements/Input"
 import { useRef } from "react"
-import { createTicket, updateTicket } from "../../data/equipmentmaintenance"
+import { createTicket, updateTicket } from "../../data/equipmentMaintenance"
 
 export const CompleteMaintenance = ({
   setShowModal,

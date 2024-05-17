@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from "react"
 import { Select } from "../form-elements/Select"
 import { getEquipment } from "../../data/equipment"
 import { getMaintenanceTypes } from "../../data/maintenance"
-import { getMaintenanceTickets } from "../../data/equipmentmaintenance"
+import { getMaintenanceTickets } from "../../data/equipmentMaintenance"
 
 export const MaintenanceFilterBar = ({ setTickets }) => {
   const statusEl = useRef()
