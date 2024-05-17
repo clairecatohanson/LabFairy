@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import { getMaintenanceTickets } from "../../data/equipmentmaintenance"
+import { getMaintenanceTickets } from "../../data/equipmentMaintenance"
 import { getEquipmentRequests } from "../../data/equipmentrequest"
 import { useNavigate } from "react-router-dom"
 import { getOrders } from "../../data/orders"

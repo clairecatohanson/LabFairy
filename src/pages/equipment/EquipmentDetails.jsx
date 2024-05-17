@@ -5,7 +5,7 @@ import {
   getEquipment,
   updateEquipment,
 } from "../../data/equipment"
-import { getMaintenanceTickets } from "../../data/equipmentmaintenance"
+import { getMaintenanceTickets } from "../../data/equipmentMaintenance"
 import { AppContext } from "../../context/AppWrapper"
 import { DeleteEquipmentModal } from "../../components/modals/DeleteEquipmentModal"
 import { ShortMaintenanceList } from "../../components/ShortMaintenanceList"

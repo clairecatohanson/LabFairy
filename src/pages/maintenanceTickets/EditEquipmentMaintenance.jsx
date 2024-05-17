@@ -5,7 +5,7 @@ import {
   deleteMaintenance,
   getMaintenanceTickets,
   updateTicket,
-} from "../../data/equipmentmaintenance"
+} from "../../data/equipmentMaintenance"
 import { CompleteMaintenance } from "../../components/modals/CompleteMaintenance"
 
 export const EditEquipmentMaintenance = () => {
