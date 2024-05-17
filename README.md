@@ -23,7 +23,7 @@ Login as either the Lab Manager or a Researcher to see how the application funct
 * password: LabUser8*
 
 ### Or, register as a new Researcher to create your own login credentials:
-* Complete the form at the [Register page](https://labfairy-client-xv2uc.ondigitalocean.app/register) and self-assign yourself to a lab on the next page. 
+* Complete the form on the Register page, and self-assign yourself to a lab on the next page. 
 
 Currently, creating a new lab manager is not supported. To see the full application, use the Lab Manager login credentials listed above. 
 
