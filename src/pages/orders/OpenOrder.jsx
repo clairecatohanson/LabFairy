@@ -4,6 +4,7 @@ import { useNavigate, useParams } from "react-router-dom"
 import { AppContext } from "../../context/AppWrapper"
 import { SupplyRequestList } from "../../components/SupplyRequestList"
 import { updateSupplyRequest } from "../../data/supplyrequest"
+import { createInventoryItem } from "../../data/inventoryitems"
 
 export const OpenOrder = () => {
   const { id } = useParams()
@@ -56,6 +57,11 @@ export const OpenOrder = () => {
     const requestId = request.id
     const updatedRequest = { date_received: new Date() }
     await updateSupplyRequest(requestId, updatedRequest)
+    const newItem = {
+      inventory_id: request.inventory,
+      consumable_id: request.consumable.id,
+    }
+    await createInventoryItem(newItem)
     setClickCounter(clickCounter + 1)
   }
 

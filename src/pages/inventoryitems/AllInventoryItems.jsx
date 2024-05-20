@@ -47,7 +47,7 @@ export const AllInventoryItems = () => {
               <th className="w-60 text-left">Name</th>
               <th className="w-28 text-left">Vendor</th>
               <th className="w-20 text-left">Price</th>
-              <th className="w-60 text-left">Availability</th>
+              <th className="w-60 text-left">Status</th>
             </tr>
           </thead>
           <tbody className="flex flex-col space-y-2">
@@ -63,7 +63,7 @@ export const AllInventoryItems = () => {
                 <td className="w-28">{item.consumable.vendor}</td>
                 <td className="w-20">${item.consumable.price}</td>
                 <td className="w-60">
-                  {item.depleted ? "Out of Stock" : item.location.name}
+                  {item.depleted ? "Out of Stock" : "Available"}
                 </td>
               </tr>
             ))}
