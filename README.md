@@ -6,7 +6,7 @@ This UI of this app was built with React / Javascript and styled with tailwindcs
 
 ## Deployed Application
 
-Check out the application here: [Lab Fairy](https://labfairy-client-xv2uc.ondigitalocean.app)
+Check out the application here: [Lab Fairy](https://labfairy-client-xv2uc.ondigitalocean.app/)
 
 Login as either the Lab Manager or a Researcher to see how the application functions from both user types' perspectives. 
 * Researchers have restricted to access to equipment and maintenance tickets, and they can submit equipment access and supply requests to the lab manager.
