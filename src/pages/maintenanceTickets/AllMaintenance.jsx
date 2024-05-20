@@ -1,7 +1,7 @@
 import { useContext, useEffect, useState } from "react"
 import { AppContext } from "../../context/AppWrapper"
 import { useNavigate } from "react-router-dom"
-import { getMaintenanceTickets } from "../../data/equipmentmaintenance"
+import { getMaintenanceTickets } from "../../data/equipmentMaintenance"
 import { MaintenanceCard } from "../../components/cards/MaintenanceCard"
 import { MaintenanceFilterBar } from "../../components/filterbars/MaintenanceFilterBar"
 

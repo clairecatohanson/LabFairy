@@ -2,7 +2,7 @@ import { useContext, useRef } from "react"
 import { useNavigate } from "react-router-dom"
 import { EquipmentMaintenanceForm } from "../../components/forms/EquipmentMaintenanceForm"
 import { AppContext } from "../../context/AppWrapper"
-import { createTicket } from "../../data/equipmentmaintenance"
+import { createTicket } from "../../data/equipmentMaintenance"
 
 export const NewEquipmentMaintenance = () => {
   const { user } = useContext(AppContext)
