@@ -4,29 +4,6 @@ Welcome to Lab Fairy! This application provides a platform for research lab mana
 
 This UI of this app was built with React / Javascript and styled with tailwindcss. The API was built with Django / Python. 
 
-## Deployed Application
-
-Check out the application here: [Lab Fairy](https://labfairy-client-xv2uc.ondigitalocean.app/)
-
-Login as either the Lab Manager or a Researcher to see how the application functions from both user types' perspectives. 
-* Researchers have restricted to access to equipment and maintenance tickets, and they can submit equipment access and supply requests to the lab manager.
-* The Lab Manager has full application access and the ability to approve and deny Researcher requests.
-
-### Lab Manager login credentials:
-
-* username: claire
-* password: Labfairy7
-
-### Researcher login credentials:
-
-* choose one of the following usernames: jen, kelly, osvaldo, tyler, greg, ben, finn, emily, louise, or joyce
-* password: LabUser8*
-
-### Or, register as a new Researcher to create your own login credentials:
-* Complete the form on the Register page, and self-assign yourself to a lab on the next page. 
-
-Currently, creating a new lab manager is not supported. To gain full access to the application, use the Lab Manager login credentials listed above. 
-
 
 ## Overview
 Lab Fairy is designed to streamline the management of shared lab equipment and inventory for research laboratories. It offers an efficient solution for lab managers to administer equipment access, schedule and plan maintenance, and track inventory supply requests from researchers. Lab Fairy ensures that research labs operate smoothly, minimizing downtime and maximizing productivity.
@@ -46,6 +23,18 @@ Lab Fairy is designed to streamline the management of shared lab equipment and i
 
 
 Lab Fairy is designed to enhance collaboration, improve resource allocation, and ensure efficient management of lab operations. Whether you are a researcher needing access to equipment and supplies or a lab manager coordinating the multiple labs' resources, Lab Fairy provides the tools necessary for a well-organized and productive research environment.
+
+
+### Lab Manager login credentials:
+
+* username: claire
+* password: Labfairy7
+
+### Researcher login credentials:
+
+* choose one of the following usernames: jen, kelly, osvaldo, tyler, greg, ben, finn, emily, louise, or joyce
+* password: LabUser8*
+
 
 ## Created By
 Claire Hanson
